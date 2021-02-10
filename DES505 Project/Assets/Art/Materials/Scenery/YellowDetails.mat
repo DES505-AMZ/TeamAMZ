@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OrangeToon
+  m_Name: YellowDetails
   m_Shader: {fileID: -6465566751694194690, guid: 6fd56dd5469fb224e886e2a845669fed,
     type: 3}
   m_ShaderKeywords: 
@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_C68C3210:
-        m_Texture: {fileID: 2800000, guid: f604ea1950b8cef4e995930d05bcf518, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_D298B8ED:
@@ -38,6 +38,6 @@ Material:
     - Vector1_979BD825: 0.1
     - Vector1_C1F37C47: 0
     m_Colors:
-    - Color_13D4DC51: {r: 1, g: 1, b: 1, a: 0}
+    - Color_13D4DC51: {r: 0.9150943, g: 0.7029319, b: 0, a: 0}
     - Color_40DB6569: {r: 1, g: 1, b: 1, a: 0}
     - Color_4D39E1E9: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 0}
