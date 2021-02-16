@@ -14,7 +14,26 @@ public class EnemyController : MonoBehaviour
     public AIState aiState { get; private set; }
     public NavMeshAgent m_navMeshAgent { get; private set; }
 
+    public PatrolPath patrolPath { get; set; }
+
     public Animator animator;
+
+    [Header("Patrol")]
+    public float pathReachingRadius = 3f;
+    public float patrolSpeed = 2f;
+    [Range(1f, 10f)]
+    public float chaseSpeedModifier = 2f;
+
+    public float maxMoveSpeed
+    {
+        get
+        {
+            if (aiState == AIState.Chase)
+                return chaseSpeedModifier * patrolSpeed;
+            else
+                return patrolSpeed;
+        }
+    }
 
     [Header("detection")]
     public Transform eyePoint;
@@ -27,19 +46,22 @@ public class EnemyController : MonoBehaviour
 
     Transform nearbyTarget;
     bool isSeeingTarget;
+    int m_patrolNodeIndex;
 
     void Start()
     {
         m_navMeshAgent = GetComponent<NavMeshAgent>();
 
         aiState = AIState.Patrol;
+        SetPathDestinationToClosestNode();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         DetectTarget();
         UpdateAIStateTransitions();
         UpdateCurrentAIState();
+        SetNavAgentMaxSpeed(maxMoveSpeed);
     }
 
     void UpdateAIStateTransitions()
@@ -68,7 +90,10 @@ public class EnemyController : MonoBehaviour
                         SetNavDestination(nearbyTarget.position);
                     }
                     else
+                    {
                         aiState = AIState.Patrol;
+                        SetPathDestinationToClosestNode();
+                    }
                 }
                 break;
         }
@@ -79,19 +104,19 @@ public class EnemyController : MonoBehaviour
         switch (aiState)
         {
             case AIState.Patrol:
-                // TODO patrol movement
-
+                UpdatePathDestination();
+                SetNavDestination(GetPatrolDestination());
                 break;
             case AIState.Seek:
                 if(DestinationArrived())
                 {
-                    // TODO seek behaviour
                     LookOrientTowards(target.transform.position);
                     StartCoroutine(SeekTarget());
                 }
                 break;
             case AIState.Chase:
                 SetNavDestination(target.transform.position);
+                LookOrientTowards(target.transform.position);
                 break;
         }
     }
@@ -99,8 +124,12 @@ public class EnemyController : MonoBehaviour
     IEnumerator SeekTarget()
     {
         yield return new WaitForSeconds(lostTargetTimeout);
-        if(!isSeeingTarget)
+        if (!isSeeingTarget)
+        {
             aiState = AIState.Patrol;
+            LookOrientTowards(eyePoint.position + transform.forward);
+            SetPathDestinationToClosestNode();           
+        }
     }
 
     void DetectTarget()
@@ -133,7 +162,7 @@ public class EnemyController : MonoBehaviour
         if (lookDirection.sqrMagnitude != 0f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            eyePoint.rotation = Quaternion.Slerp(eyePoint.rotation, targetRotation, Time.deltaTime * orientationSpeed);
+            eyePoint.rotation = Quaternion.Slerp(eyePoint.rotation, targetRotation, orientationSpeed);
         }
     }
 
@@ -145,8 +174,72 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void SetNavAgentMaxSpeed(float speed)
+    {
+        m_navMeshAgent.speed = speed;
+    }
+
     bool DestinationArrived()
     {
         return !m_navMeshAgent.pathPending && m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance;
+    }
+
+    bool IsPathValid()
+    {
+        return patrolPath && patrolPath.pathNodes.Count > 0;
+    }
+
+    void UpdatePathDestination(bool inverseOrder = false)
+    {
+        if (IsPathValid())
+        {
+            float dist = (transform.position - patrolPath.GetPositionOfPathNode(m_patrolNodeIndex)).magnitude;
+            if (dist <= pathReachingRadius)
+            {
+                m_patrolNodeIndex = inverseOrder ? (m_patrolNodeIndex - 1) : (m_patrolNodeIndex + 1);
+                if (m_patrolNodeIndex < 0)
+                {
+                    m_patrolNodeIndex += patrolPath.pathNodes.Count;
+                }
+                if (m_patrolNodeIndex >= patrolPath.pathNodes.Count)
+                {
+                    m_patrolNodeIndex -= patrolPath.pathNodes.Count;
+                }
+
+                
+            }
+        }
+    }
+
+    void SetPathDestinationToClosestNode()
+    {
+        if(IsPathValid())
+        {
+            int closestNodeIndex = 0;
+            for(int i = 0; i < patrolPath.pathNodes.Count; ++i)
+            {
+                float dist = patrolPath.GetDistanceToNode(transform.position, i);
+                if (dist < patrolPath.GetDistanceToNode(transform.position, closestNodeIndex))
+                    closestNodeIndex = i;
+            }
+
+            m_patrolNodeIndex = closestNodeIndex;
+        }
+        else
+        {
+            m_patrolNodeIndex = 0;
+        }
+    }
+
+    public Vector3 GetPatrolDestination()
+    {
+        if (IsPathValid())
+        {
+            return patrolPath.GetPositionOfPathNode(m_patrolNodeIndex);
+        }
+        else
+        {
+            return target.transform.position;
+        }
     }
 }
