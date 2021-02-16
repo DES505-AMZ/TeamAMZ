@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void PhotoAction(Ray ray);
 [RequireComponent(typeof(PlayerInputHandler))]
 public class PlayerController : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public class PlayerController : MonoBehaviour
     Vector3 m_characterVelocity;
     Interactable m_interactableObject;
 
+    public event PhotoAction onPhoto;
+
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
@@ -75,6 +78,7 @@ public class PlayerController : MonoBehaviour
         HandleLookRotation();
 
         CameraMode();
+        TakePhoto();
 
         if(GetInteractableObject())
         {
@@ -174,6 +178,20 @@ public class PlayerController : MonoBehaviour
         {
             m_isAiming = false;
 
+        }
+    }
+
+    void TakePhoto()
+    {
+        if(m_isAiming && m_inputHandler.GetInteractInputDown())
+        {
+            
+
+            // check whether the photo is evidence
+            if(onPhoto != null)
+            {
+                onPhoto(new Ray(playerCamera.transform.position, playerCamera.transform.forward));
+            }
         }
     }
 }
