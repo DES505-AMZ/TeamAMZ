@@ -17,8 +17,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Cardboard-1
+    second: {fileID: 2100000, guid: 6854931589756964f98dfd9a16b82217, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cardboard-2
+    second: {fileID: 2100000, guid: 63cf579952cec9b419be40f8af70b092, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: CeilingChain
     second: {fileID: 2100000, guid: 3db23306caf603a488c3ead37391425f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ChainLinkFence
+    second: {fileID: 2100000, guid: 767671ce220bd674592bf940a7300725, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -32,13 +47,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: FenceRim
+    second: {fileID: 2100000, guid: eb1ef5640322ef8419cc1547c5dc2c86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: No Name
     second: {fileID: 2100000, guid: 9875870f0a870c04b8da435cce0fd230, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Shelf
-    second: {fileID: 2100000, guid: b5330b69fb5580347ae2065d1e61fb81, type: 2}
+    second: {fileID: 2100000, guid: eb1ef5640322ef8419cc1547c5dc2c86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShelfAccent
+    second: {fileID: 2100000, guid: c2ee986e94f2593498a0b4f47a8ed511, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShelfSign
+    second: {fileID: 2100000, guid: f1122f029a5e48f4681560da059a74ed, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
