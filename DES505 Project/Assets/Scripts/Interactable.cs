@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public void OnInteraction()
+    public virtual void OnInteraction()
     {
         Debug.Log("Interact with " + gameObject.name);
-        
+    }
+
+    public virtual void OnLookAt()
+    {
+
     }
 }

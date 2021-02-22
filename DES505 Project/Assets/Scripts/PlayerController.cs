@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     PlayerInputHandler m_inputHandler;
     Rigidbody m_rigidbody;
     CapsuleCollider m_collider;
+    float m_playerHorizontalAngle;
     float m_cameraVerticalAngle;
     bool m_isAiming;
     float m_targetCharacterHeight;
@@ -158,6 +159,8 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, maxInteractionDistance))
         {
             m_interactableObject = hit.collider.GetComponent<Interactable>();
+            if (m_interactableObject)
+                m_interactableObject.OnLookAt();
             return true;
         }
         else

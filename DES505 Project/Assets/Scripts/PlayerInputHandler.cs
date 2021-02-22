@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public float lookSensitivity = 1f;
+    public float lookSensitivity = 2f;
     public bool canProcessInput = true;
 
     PlayerController playerController;
@@ -13,6 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     void Start()
     {
         playerController = GetComponent<PlayerController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public Vector3 GetMoveInput()

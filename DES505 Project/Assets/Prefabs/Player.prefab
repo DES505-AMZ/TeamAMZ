@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff89befe29bfc847ae8dfac5d84bbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSensitivity: 1
+  lookSensitivity: 2
   canProcessInput: 1
 --- !u!114 &7431438921528419674
 MonoBehaviour:

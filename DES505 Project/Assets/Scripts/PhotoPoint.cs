@@ -40,4 +40,12 @@ public class PhotoPoint : MonoBehaviour
             }
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, photoDistance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, photoRange);
+    }
 }

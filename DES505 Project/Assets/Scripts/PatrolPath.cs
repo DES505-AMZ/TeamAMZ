@@ -9,6 +9,17 @@ public class PatrolPath : MonoBehaviour
     [Tooltip("The Nodes making up the path")]
     public List<Transform> pathNodes = new List<Transform>();
 
+    private void Awake()
+    {
+        if (pathNodes.Count == 0)
+        {
+            foreach (Transform child in transform)
+            {
+                pathNodes.Add(child);
+            }
+        }
+    }
+
     private void Start()
     {
         foreach(var enemy in enemiesToAssign)
