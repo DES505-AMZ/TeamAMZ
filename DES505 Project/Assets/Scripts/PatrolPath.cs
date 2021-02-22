@@ -48,7 +48,7 @@ public class PatrolPath : MonoBehaviour
         return pathNodes[NodeIndex].position;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
         for (int i = 0; i < pathNodes.Count; i++)

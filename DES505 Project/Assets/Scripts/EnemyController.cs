@@ -262,7 +262,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {        
         Vector3 endPoint = eyePoint.position + eyePoint.forward * sightRange;
         float radius = sightRange * Mathf.Tan(Mathf.Deg2Rad * sightIncludedAngle);
