@@ -25,6 +25,13 @@ public class PlayerController : MonoBehaviour
     public float capsuleHeightStanding = 2f;
     public float capsuleHeightCrouching = 1f;
     public float crouchingSharpness = 10f;
+    public Vector3 headPosition
+    {
+        get
+        {
+            return playerCamera.transform.position;
+        }
+    }
 
     [Header("Interaction")]
     public float maxInteractionDistance = 5f;

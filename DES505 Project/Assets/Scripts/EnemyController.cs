@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour
 {
     public enum AIState
@@ -18,18 +19,25 @@ public class EnemyController : MonoBehaviour
 
     public Animator animator;
 
+    [Header("Movement")]
+    public float patrolSpeed = 1f;
+    public float chaseSpeed = 2f;
+    public float currentSpeed
+    {
+        get
+        {
+            return m_navMeshAgent.velocity.magnitude;
+        }
+    }
+
     [Header("Patrol")]
     public float pathReachingRadius = 3f;
-    public float patrolSpeed = 2f;
-    [Range(1f, 10f)]
-    public float chaseSpeedModifier = 2f;
-
     public float maxMoveSpeed
     {
         get
         {
             if (aiState == AIState.Chase)
-                return chaseSpeedModifier * patrolSpeed;
+                return chaseSpeed;
             else
                 return patrolSpeed;
         }
@@ -39,18 +47,26 @@ public class EnemyController : MonoBehaviour
     public Transform eyePoint;
     public float sightRange = 5f;
     [Range(1f, 90f)]
-    public float sightIncludedAngle = 60f;
+    public float sightIncludedAngle = 20f;
     public float lostTargetTimeout = 4f;
     public float orientationSpeed = 10f;
-    public GameObject target;
+    PlayerController targetPlayer;
 
     Transform nearbyTarget;
     bool isSeeingTarget;
     int m_patrolNodeIndex;
 
+    float distance;
+
     void Start()
     {
+        targetPlayer = FindObjectOfType<PlayerController>();
+        eyePoint = transform.GetChild(0);
+        if (eyePoint == null)
+            eyePoint = transform;
+
         m_navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
         aiState = AIState.Patrol;
         SetPathDestinationToClosestNode();
@@ -62,6 +78,9 @@ public class EnemyController : MonoBehaviour
         UpdateAIStateTransitions();
         UpdateCurrentAIState();
         SetNavAgentMaxSpeed(maxMoveSpeed);
+
+        if(animator)
+            animator.SetFloat("MoveSpeed", currentSpeed);
     }
 
     void UpdateAIStateTransitions()
@@ -86,7 +105,7 @@ public class EnemyController : MonoBehaviour
                     if (nearbyTarget != null)
                     {
                         aiState = AIState.Seek;
-                        // move to the latest target position this enemy saw
+                        // move to the latest targetPlayer position this enemy saw
                         SetNavDestination(nearbyTarget.position);
                     }
                     else
@@ -110,13 +129,13 @@ public class EnemyController : MonoBehaviour
             case AIState.Seek:
                 if(DestinationArrived())
                 {
-                    LookOrientTowards(target.transform.position);
+                    LookOrientTowards(targetPlayer.transform.position);
                     StartCoroutine(SeekTarget());
                 }
                 break;
             case AIState.Chase:
-                SetNavDestination(target.transform.position);
-                LookOrientTowards(target.transform.position);
+                SetNavDestination(targetPlayer.transform.position);
+                LookOrientTowards(targetPlayer.transform.position);
                 break;
         }
     }
@@ -135,21 +154,21 @@ public class EnemyController : MonoBehaviour
     void DetectTarget()
     {
         isSeeingTarget = false;
-        float dist = Vector3.Distance(target.transform.position, transform.position);
+        float dist = Vector3.Distance(targetPlayer.headPosition, eyePoint.position);
         if (dist < sightRange)
         {
-            Vector3 targetDir = target.transform.position - eyePoint.position;
+            Vector3 targetDir = targetPlayer.headPosition - eyePoint.position;
             float degree = Vector3.Angle(targetDir, eyePoint.forward);
-
+            distance = degree;
             if(degree < sightIncludedAngle && degree > -sightIncludedAngle)
             {
                 RaycastHit hit;
                 if(Physics.Raycast(eyePoint.position, targetDir, out hit, sightRange))
-                {
-                    if(hit.collider.gameObject.tag == "Player")
+                {                   
+                    if(hit.collider.gameObject == targetPlayer.gameObject)
                     {
                         isSeeingTarget = true;
-                        nearbyTarget = target.transform;
+                        nearbyTarget = targetPlayer.transform;
                     }
                 }
             }
@@ -239,7 +258,25 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            return target.transform.position;
+            return targetPlayer.transform.position;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {        
+        Vector3 endPoint = eyePoint.position + eyePoint.forward * sightRange;
+        float radius = sightRange * Mathf.Tan(Mathf.Deg2Rad * sightIncludedAngle);
+        Vector3 upVec = eyePoint.up * radius;
+        Vector3 rightVec = eyePoint.right * radius;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(eyePoint.position, endPoint);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(eyePoint.position, endPoint + upVec);
+        Gizmos.DrawLine(eyePoint.position, endPoint - upVec);
+        Gizmos.DrawLine(eyePoint.position, endPoint + rightVec);
+        Gizmos.DrawLine(eyePoint.position, endPoint - rightVec);       
+        Gizmos.DrawWireSphere(endPoint, radius);
     }
 }
