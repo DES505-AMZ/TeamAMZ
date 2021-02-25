@@ -26,9 +26,9 @@ public class CollectableItem : Interactable
         isLookingAt = false;
     }
 
-    public override void OnInteraction()
+    public override void OnInteraction(Ray ray)
     {
-        base.OnInteraction();
+        base.OnInteraction(ray);
 
         isFound = true;
         if (onFound != null)

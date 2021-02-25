@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!m_isAiming && m_interactableObject && m_inputHandler.GetInteractInputDown())
         {
-            m_interactableObject.OnInteraction();
+            m_interactableObject.OnInteraction(new Ray(playerCamera.transform.position, playerCamera.transform.forward));
             m_interactableObject = null;
         }
     }

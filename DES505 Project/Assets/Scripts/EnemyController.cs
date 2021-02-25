@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
 
     public PatrolPath patrolPath { get; set; }
 
-    public Animator animator;
+    Animator animator;
 
     [Header("Movement")]
     public float patrolSpeed = 1f;
@@ -79,8 +79,11 @@ public class EnemyController : MonoBehaviour
         UpdateCurrentAIState();
         SetNavAgentMaxSpeed(maxMoveSpeed);
 
-        if(animator)
+        if (animator)
+        {
             animator.SetFloat("MoveSpeed", currentSpeed);
+            animator.speed = currentSpeed > 1f ? currentSpeed : 1f;
+        }
     }
 
     void UpdateAIStateTransitions()

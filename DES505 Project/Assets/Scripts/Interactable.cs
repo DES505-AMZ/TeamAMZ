@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public virtual void OnInteraction()
+    public virtual void OnInteraction(Ray ray)
     {
         Debug.Log("Interact with " + gameObject.name);
     }
