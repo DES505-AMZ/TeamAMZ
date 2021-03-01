@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public delegate void CollectableAction(CollectableItem item);
 public class CollectableItem : Interactable
@@ -11,6 +12,8 @@ public class CollectableItem : Interactable
     public bool isFound { get; private set; }
 
     public event CollectableAction onFound;
+
+    public EvidenceItem info;
 
     private void Start()
     {
