@@ -51,6 +51,7 @@ public class EnemyController : MonoBehaviour
     public float lostTargetTimeout = 4f;
     public float orientationSpeed = 10f;
     PlayerController targetPlayer;
+    public bool shakeCamera = true;
 
     Transform nearbyTarget;
     bool isSeeingTarget;
@@ -176,6 +177,8 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
+        if(shakeCamera)
+            targetPlayer.shakeSpeedMultiplier = Mathf.Clamp(1f - dist / sightRange, 0f, 1f);
     }
 
     void LookOrientTowards(Vector3 lookPosition)

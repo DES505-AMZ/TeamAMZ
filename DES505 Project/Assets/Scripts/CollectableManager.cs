@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollectableManager : MonoBehaviour
 {
     public CollectableItem[] allItems;
     [SerializeField]
     public List<CollectableItem> foundItems;
+    public Canvas itemCanvas;
 
     private void Awake()
     {

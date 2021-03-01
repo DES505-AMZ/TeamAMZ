@@ -1,23 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public delegate void PhotoAction(Ray ray);
 [RequireComponent(typeof(PlayerInputHandler))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Camera")]
     public Camera playerCamera;
+    public Canvas cameraUI;
+    public float freezeSeconds = 0.3f;
+    
+    [Header("Camera Rotation")]
+    public float rotationSpeed = 200f;
+    [Range(0.1f, 1f)]
+    public float aimingRotationMultiplier = 0.4f;
+    
+    [Header("Camera Shake")]
+    public float MaxShakeRange = 0.5f;
+    public float shakeSpeed = 1f;
+    [Range(0.1f, 1f)]
+    public float shakeInterval = 0.3f;
+    public float shakeSpeedMultiplier { get; set; }
 
     [Header("Movement")]
     public float maxWalkSpeed = 10f;
     public float movementSharpness = 15;
     [Range(0, 1)]
     public float crouchedSpeedRatio = 0.5f;
-
-    [Header("Camera Rotation")]
-    public float rotationSpeed = 200f;
-    [Range(0.1f, 1f)]
-    public float aimingRotationMultiplier = 0.4f;
 
     [Header("Character Height")]
     [Range(0.1f, 1f)]
@@ -61,6 +72,7 @@ public class PlayerController : MonoBehaviour
     float m_targetCharacterHeight;
     Vector3 m_characterVelocity;
     Interactable m_interactableObject;
+    float m_shakeRange = 0.5f;
 
     public event PhotoAction onPhoto;
 
@@ -71,8 +83,13 @@ public class PlayerController : MonoBehaviour
         m_collider = GetComponent<CapsuleCollider>();
         m_inputHandler = GetComponent<PlayerInputHandler>();
 
+        cameraUI.gameObject.SetActive(false);
+        m_isAiming = false;
+
         SetCrouchingState(false);
         UpdateCharacterHeight(false);
+
+        StartCoroutine(SetCameraShakingState());
     }
 
     void Update()
@@ -83,8 +100,8 @@ public class PlayerController : MonoBehaviour
         }
 
         UpdateCharacterHeight(true);
+        ShakeCamera();
         HandleLookRotation();
-
         CameraMode();
         TakePhoto();
 
@@ -96,6 +113,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        
+
         HandleMovement();
     }
 
@@ -179,15 +198,17 @@ public class PlayerController : MonoBehaviour
 
     void CameraMode()
     {
-        if (m_inputHandler.GetAimInputDown())
+        if(m_inputHandler.GetAimInputDown())
+        if (!m_isAiming)
         {
             m_isAiming = true;
+            cameraUI.gameObject.SetActive(true);
 
         }
-        if (m_inputHandler.GetAimInputReleased())
+        else if (m_isAiming)
         {
             m_isAiming = false;
-
+            cameraUI.gameObject.SetActive(false);
         }
     }
 
@@ -195,13 +216,46 @@ public class PlayerController : MonoBehaviour
     {
         if(m_isAiming && m_inputHandler.GetInteractInputDown())
         {
-            
-
+            StartCoroutine(FreezeCamera(freezeSeconds));
             // check whether the photo is evidence
-            if(onPhoto != null)
+            if (onPhoto != null)
             {
                 onPhoto(new Ray(playerCamera.transform.position, playerCamera.transform.forward));
             }
         }
+    }
+
+    IEnumerator FreezeCamera(float time)
+    {
+        Time.timeScale = 0f;
+        m_inputHandler.canProcessInput = false;
+
+        float waitCounter = 0;
+        while(waitCounter < time)
+        {
+            waitCounter += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        Time.timeScale = 1f;
+        m_inputHandler.canProcessInput = true;
+    }
+
+    IEnumerator SetCameraShakingState()
+    {
+        m_shakeRange = MaxShakeRange;
+        while(true)
+        {
+            m_shakeRange = -m_shakeRange;
+            yield return new WaitForSeconds(shakeInterval);
+        }
+    }
+
+    void ShakeCamera()
+    {
+        playerCamera.transform.localPosition = new Vector3(
+                Mathf.MoveTowards(playerCamera.transform.localPosition.x, m_shakeRange * shakeSpeedMultiplier, shakeSpeed * Time.deltaTime),
+                playerCamera.transform.localPosition.y,
+                playerCamera.transform.localPosition.z);
     }
 }
