@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorElectronicSwitch : DoorBase
+public class DoorRemoteOpen : DoorBase
 {
     [Tooltip("Switch object (only works when HasTrigger set to true)")]
     public DoorTrigger switchObject;
@@ -20,14 +20,14 @@ public class DoorElectronicSwitch : DoorBase
             return false;
     }
 
-    protected override void DoorOpen()
+    public override void DoorOpen()
     {
         base.DoorOpen();
         switchObject.onDoor -= DoorOpen;
         switchObject.onDoor += DoorClose;
     }
 
-    protected override void DoorClose()
+    public override void DoorClose()
     {
         base.DoorClose();
         switchObject.onDoor -= DoorClose;

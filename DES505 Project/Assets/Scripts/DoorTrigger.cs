@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class DoorTrigger : Interactable
 {
+    public bool canPickup = true;
     public bool isActivated { get; private set; }
 
     public UnityAction onDoor;
@@ -26,5 +27,8 @@ public class DoorTrigger : Interactable
         // turn on the switch will tell the door to open
         if (onDoor != null)
             onDoor();
+
+        if (canPickup)
+            gameObject.SetActive(false);
     }
 }

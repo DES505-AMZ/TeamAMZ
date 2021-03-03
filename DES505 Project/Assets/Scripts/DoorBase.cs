@@ -11,7 +11,7 @@ public class DoorBase : Interactable
     
     protected bool m_isOpen;
     protected Ray m_playerViewRay;
-    public Animator animator;
+    Animator animator;
 
     private void Start()
     {
@@ -39,16 +39,20 @@ public class DoorBase : Interactable
         return true;
     }
 
-    protected virtual void DoorOpen()
+    public virtual void DoorOpen()
     {
-        animator.SetTrigger("OpenDoor");
+        if(animator)
+            animator.SetTrigger("OpenDoor");
         m_isOpen = true;
     }
 
-    protected virtual void DoorClose()
+    public virtual void DoorClose()
     {
-        animator.SetTrigger("CloseDoor");
+        if(animator)
+            animator.SetTrigger("CloseDoor");
         m_isOpen = false;
+
+
     }
 
 }

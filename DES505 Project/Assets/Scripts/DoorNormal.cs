@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorNormal : DoorBase
 {
@@ -10,6 +11,11 @@ public class DoorNormal : DoorBase
     public bool isOneWayDoor = false;
     [Tooltip("The direction of one-way door's front side. Set to +z axis by default.")]
     public Transform forwardPoint;
+
+    public bool isOneOfGates = false;
+    public bool isUnlocked { get; private set; }
+
+    public UnityAction onCheckAllGatesUnlockedAndOpen;
 
     Vector3 forward;
 
@@ -28,21 +34,23 @@ public class DoorNormal : DoorBase
     {
         if (!hasTrigger || (hasTrigger && key.isActivated))
         {
+            if (isOneOfGates)
+            {
+                isUnlocked = true;
+                if (onCheckAllGatesUnlockedAndOpen != null)
+                {
+                    onCheckAllGatesUnlockedAndOpen();
+                }
+                return false;
+            }
+
             if (isOneWayDoor && Vector3.Dot(m_playerViewRay.direction, forward) > 0)
                 return false;
+
             return true;
         }
         else
             return false;
     }
 
-    //protected override void DoorOpen()
-    //{
-    //    m_isOpen = true;
-    //}
-
-    //protected override void DoorClose()
-    //{
-    //    m_isOpen = false;
-    //}
 }
