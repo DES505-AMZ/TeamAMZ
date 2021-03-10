@@ -11,9 +11,9 @@ public class DoorBase : Interactable
     
     protected bool m_isOpen;
     protected Ray m_playerViewRay;
-    Animator animator;
+    public Animator animator;
 
-    private void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
     }

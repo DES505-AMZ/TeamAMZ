@@ -7,8 +7,10 @@ public class DoorRemoteOpen : DoorBase
     [Tooltip("Switch object (only works when HasTrigger set to true)")]
     public DoorTrigger switchObject;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         switchObject.onDoor += DoorOpen;
     }
 

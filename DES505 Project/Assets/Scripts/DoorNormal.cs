@@ -19,8 +19,10 @@ public class DoorNormal : DoorBase
 
     Vector3 forward;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         if (forwardPoint == null)
             forward = transform.forward;
         else
