@@ -7,13 +7,9 @@ public class PlayerInputHandler : MonoBehaviour
     public float lookSensitivity = 2f;
     public bool canProcessInput = true;
 
-    PlayerController playerController;
-
-
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
-        Cursor.lockState = CursorLockMode.Locked;
+        GameManager.Instance.OnGameStateChange += HandleGameStatePaused;
     }
 
     public Vector3 GetMoveInput()
@@ -112,4 +108,17 @@ public class PlayerInputHandler : MonoBehaviour
         }
         return 0;
     }
+
+    void HandleGameStatePaused(GameManager.GameState currentState, GameManager.GameState preState)
+    {
+        if(currentState == GameManager.GameState.PAUSED && preState == GameManager.GameState.RUNNING)
+        {
+            canProcessInput = false;
+        }
+        else if (currentState == GameManager.GameState.RUNNING && preState == GameManager.GameState.PAUSED)
+        {
+            canProcessInput = true;
+        }
+    }
+
 }

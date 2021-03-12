@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : CharacterNavBase
 {
     public enum AIState
     {
@@ -13,25 +11,11 @@ public class EnemyController : MonoBehaviour
         Chase,
     }
     public AIState aiState { get; private set; }
-    public NavMeshAgent m_navMeshAgent { get; private set; }
-
-    public PatrolPath patrolPath { get; set; }
-
-    Animator animator;
 
     [Header("Movement")]
     public float patrolSpeed = 1f;
     public float chaseSpeed = 2f;
-    public float currentSpeed
-    {
-        get
-        {
-            return m_navMeshAgent.velocity.magnitude;
-        }
-    }
 
-    [Header("Patrol")]
-    public float pathReachingRadius = 3f;
     public float maxMoveSpeed
     {
         get
@@ -50,27 +34,32 @@ public class EnemyController : MonoBehaviour
     public float sightIncludedAngle = 20f;
     public float lostTargetTimeout = 4f;
     public float orientationSpeed = 10f;
-    PlayerController targetPlayer;
     public bool shakeCamera = true;
 
-    Transform nearbyTarget;
-    bool isSeeingTarget;
-    int m_patrolNodeIndex;
+    Animator m_animator;
+    PlayerController m_targetPlayer;
+    Transform m_nearbyTarget;
+    bool m_isSeeingTarget;
 
-    float distance;
-
-    void Start()
+    protected override void Start()
     {
-        targetPlayer = FindObjectOfType<PlayerController>();
+        base.Start();
+
+        m_animator = GetComponent<Animator>();
         eyePoint = transform.GetChild(0);
         if (eyePoint == null)
             eyePoint = transform;
 
-        m_navMeshAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-
+        m_targetPlayer = PlayerController.Instance;
         aiState = AIState.Patrol;
-        SetPathDestinationToClosestNode();
+    }
+
+    public override void OnRespawn()
+    {
+        base.OnRespawn();
+
+        m_targetPlayer = PlayerController.Instance;
+        aiState = AIState.Patrol;
     }
 
     void FixedUpdate()
@@ -80,10 +69,10 @@ public class EnemyController : MonoBehaviour
         UpdateCurrentAIState();
         SetNavAgentMaxSpeed(maxMoveSpeed);
 
-        if (animator)
+        if (m_animator)
         {
-            animator.SetFloat("MoveSpeed", currentSpeed);
-            animator.speed = currentSpeed > 1f ? currentSpeed : 1f;
+            m_animator.SetFloat("MoveSpeed", currentSpeed);
+            m_animator.speed = currentSpeed > 1f ? currentSpeed : 1f;
         }
     }
 
@@ -92,25 +81,25 @@ public class EnemyController : MonoBehaviour
         switch (aiState)
         {
             case AIState.Patrol:
-                if(isSeeingTarget)
+                if(m_isSeeingTarget)
                 {
                     aiState = AIState.Chase;
                 }
                 break;
             case AIState.Seek:
-                if(isSeeingTarget)
+                if(m_isSeeingTarget)
                 {
                     aiState = AIState.Chase;
                 }
                 break;
             case AIState.Chase:
-                if (!isSeeingTarget)
+                if (!m_isSeeingTarget)
                 {
-                    if (nearbyTarget != null)
+                    if (m_nearbyTarget != null)
                     {
                         aiState = AIState.Seek;
-                        // move to the latest targetPlayer position this enemy saw
-                        SetNavDestination(nearbyTarget.position);
+                        // move to the latest m_targetPlayer position this enemy saw
+                        SetNavDestination(m_nearbyTarget.position);
                     }
                     else
                     {
@@ -133,13 +122,13 @@ public class EnemyController : MonoBehaviour
             case AIState.Seek:
                 if(DestinationArrived())
                 {
-                    LookOrientTowards(targetPlayer.transform.position);
+                    LookOrientTowards(m_targetPlayer.transform.position);
                     StartCoroutine(SeekTarget());
                 }
                 break;
             case AIState.Chase:
-                SetNavDestination(targetPlayer.transform.position);
-                LookOrientTowards(targetPlayer.transform.position);
+                SetNavDestination(m_targetPlayer.transform.position);
+                LookOrientTowards(m_targetPlayer.transform.position);
                 break;
         }
     }
@@ -147,7 +136,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator SeekTarget()
     {
         yield return new WaitForSeconds(lostTargetTimeout);
-        if (!isSeeingTarget)
+        if (!m_isSeeingTarget)
         {
             aiState = AIState.Patrol;
             LookOrientTowards(eyePoint.position + transform.forward);
@@ -157,28 +146,27 @@ public class EnemyController : MonoBehaviour
 
     void DetectTarget()
     {
-        isSeeingTarget = false;
-        float dist = Vector3.Distance(targetPlayer.headPosition, eyePoint.position);
+        m_isSeeingTarget = false;
+        float dist = Vector3.Distance(m_targetPlayer.headPosition, eyePoint.position);
         if (dist < sightRange)
         {
-            Vector3 targetDir = targetPlayer.headPosition - eyePoint.position;
+            Vector3 targetDir = m_targetPlayer.headPosition - eyePoint.position;
             float degree = Vector3.Angle(targetDir, eyePoint.forward);
-            distance = degree;
             if(degree < sightIncludedAngle && degree > -sightIncludedAngle)
             {
                 RaycastHit hit;
                 if(Physics.Raycast(eyePoint.position, targetDir, out hit, sightRange))
                 {                   
-                    if(hit.collider.gameObject == targetPlayer.gameObject)
+                    if(hit.collider.gameObject == m_targetPlayer.gameObject)
                     {
-                        isSeeingTarget = true;
-                        nearbyTarget = targetPlayer.transform;
+                        m_isSeeingTarget = true;
+                        m_nearbyTarget = m_targetPlayer.transform;
                     }
                 }
             }
         }
         if(shakeCamera)
-            targetPlayer.shakeSpeedMultiplier = Mathf.Clamp(1f - dist / sightRange, 0f, 1f);
+            m_targetPlayer.shakeSpeedMultiplier = Mathf.Clamp(1f - dist / sightRange, 0f, 1f);
     }
 
     void LookOrientTowards(Vector3 lookPosition)
@@ -191,71 +179,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void SetNavDestination(Vector3 destination)
-    {
-        if (m_navMeshAgent)
-        {
-            m_navMeshAgent.SetDestination(destination);
-        }
-    }
-
-    void SetNavAgentMaxSpeed(float speed)
-    {
-        m_navMeshAgent.speed = speed;
-    }
-
-    bool DestinationArrived()
-    {
-        return !m_navMeshAgent.pathPending && m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance;
-    }
-
-    bool IsPathValid()
-    {
-        return patrolPath && patrolPath.pathNodes.Count > 0;
-    }
-
-    void UpdatePathDestination(bool inverseOrder = false)
-    {
-        if (IsPathValid())
-        {
-            float dist = (transform.position - patrolPath.GetPositionOfPathNode(m_patrolNodeIndex)).magnitude;
-            if (dist <= pathReachingRadius)
-            {
-                m_patrolNodeIndex = inverseOrder ? (m_patrolNodeIndex - 1) : (m_patrolNodeIndex + 1);
-                if (m_patrolNodeIndex < 0)
-                {
-                    m_patrolNodeIndex += patrolPath.pathNodes.Count;
-                }
-                if (m_patrolNodeIndex >= patrolPath.pathNodes.Count)
-                {
-                    m_patrolNodeIndex -= patrolPath.pathNodes.Count;
-                }
-
-                
-            }
-        }
-    }
-
-    void SetPathDestinationToClosestNode()
-    {
-        if(IsPathValid())
-        {
-            int closestNodeIndex = 0;
-            for(int i = 0; i < patrolPath.pathNodes.Count; ++i)
-            {
-                float dist = patrolPath.GetDistanceToNode(transform.position, i);
-                if (dist < patrolPath.GetDistanceToNode(transform.position, closestNodeIndex))
-                    closestNodeIndex = i;
-            }
-
-            m_patrolNodeIndex = closestNodeIndex;
-        }
-        else
-        {
-            m_patrolNodeIndex = 0;
-        }
-    }
-
     public Vector3 GetPatrolDestination()
     {
         if (IsPathValid())
@@ -264,7 +187,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            return targetPlayer.transform.position;
+            return m_targetPlayer.transform.position;
         }
     }
 

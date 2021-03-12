@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class PhotoPoint : MonoBehaviour
 {
+    public GameConstants.LevelArea level;
     [Tooltip("player needs to take pictures within this distance")]
     public float photoDistance = 5f;
     [Tooltip("The radius of the sphere centered on the photo point")]
@@ -17,11 +18,11 @@ public class PhotoPoint : MonoBehaviour
 
     void Start()
     {
-        PhotoManager.playerController.onPhoto += OnPhoto;
+        PlayerController.Instance.onPhoto += OnPhotoTake;
         isFound = false;
     }
 
-    void OnPhoto(Ray ray)
+    void OnPhotoTake(Ray ray)
     {
         float dist = Vector3.Distance(transform.position, ray.origin);
         if(dist < photoDistance)
@@ -32,8 +33,8 @@ public class PhotoPoint : MonoBehaviour
                 if(!Physics.Raycast(ray, photoDistance, layerMask))
                 {
                     isFound = true;
-                    PhotoManager.playerController.onPhoto -= OnPhoto;
-                    // call PhotoManager to record
+                    PlayerController.Instance.onPhoto -= OnPhotoTake;
+                    UIManager.Instance.UpdateInventoryInfoPhoto(level);
                     if (onFound != null)
                         onFound();
                 }

@@ -8,4 +8,13 @@
     public const string k_ButtonNameCrouch = "Crouch";
     public const string k_ButtonNameInteract = "Fire1";
     public const string k_ButtonNameAim = "Fire2";
+    public const string k_ButtonNameInventory = "Inventory";
+    public const string k_SceneNameMainMenu = "SampleScene";
+
+    public enum LevelArea
+    {
+        StowingArea,
+        BreakRoom,
+        Office,
+    }
 }

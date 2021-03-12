@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public delegate void PhotoAction(Ray ray);
 [RequireComponent(typeof(PlayerInputHandler))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [Header("Player Camera")]
     public Camera playerCamera;
-    public Canvas cameraUI;
     public float freezeSeconds = 0.3f;
     
     [Header("Camera Rotation")]
@@ -75,6 +74,7 @@ public class PlayerController : MonoBehaviour
     float m_shakeRange = 0.5f;
 
     public event PhotoAction onPhoto;
+    public UnityAction onCaught;
 
     void Start()
     {
@@ -83,13 +83,22 @@ public class PlayerController : MonoBehaviour
         m_collider = GetComponent<CapsuleCollider>();
         m_inputHandler = GetComponent<PlayerInputHandler>();
 
-        cameraUI.gameObject.SetActive(false);
         m_isAiming = false;
 
         SetCrouchingState(false);
         UpdateCharacterHeight(false);
 
         StartCoroutine(SetCameraShakingState());
+    }
+
+    public void Restart(Transform location)
+    {
+        transform.position = new Vector3(location.position.x, transform.position.y, location.position.z);
+        transform.rotation = location.rotation;
+
+        m_isAiming = false;
+        SetCrouchingState(false);
+        UpdateCharacterHeight(false);
     }
 
     void Update()
@@ -202,14 +211,14 @@ public class PlayerController : MonoBehaviour
         if (!m_isAiming)
         {
             m_isAiming = true;
-            cameraUI.gameObject.SetActive(true);
+                UIManager.Instance.SetCameraCanvasVisible(true);
 
         }
         else if (m_isAiming)
         {
             m_isAiming = false;
-            cameraUI.gameObject.SetActive(false);
-        }
+                UIManager.Instance.SetCameraCanvasVisible(false);
+            }
     }
 
     void TakePhoto()
@@ -257,5 +266,14 @@ public class PlayerController : MonoBehaviour
                 Mathf.MoveTowards(playerCamera.transform.localPosition.x, m_shakeRange * shakeSpeedMultiplier, shakeSpeed * Time.deltaTime),
                 playerCamera.transform.localPosition.y,
                 playerCamera.transform.localPosition.z);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if (onCaught != null)
+                onCaught();
+        }
     }
 }

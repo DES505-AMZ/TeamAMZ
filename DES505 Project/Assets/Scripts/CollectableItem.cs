@@ -4,28 +4,29 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public delegate void CollectableAction(CollectableItem item);
+public delegate void CollectableAction(EvidenceItem item);
 public class CollectableItem : Interactable
 {
-    MeshRenderer renderer;
+    MeshRenderer meshRenderer;
     bool isLookingAt = false;
     public bool isFound { get; private set; }
 
-    public event CollectableAction onFound;
+    //public event CollectableAction onFound;
 
+    public GameConstants.LevelArea level;
     public EvidenceItem info;
 
     private void Start()
     {
-        renderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void FixedUpdate()
     {
         if(isLookingAt)
-            renderer.material.SetColor("_BaseColor", Color.green);
+            meshRenderer.material.SetColor("_BaseColor", Color.green);
         else
-            renderer.material.SetColor("_BaseColor", Color.red);
+            meshRenderer.material.SetColor("_BaseColor", Color.red);
         isLookingAt = false;
     }
 
@@ -34,8 +35,10 @@ public class CollectableItem : Interactable
         base.OnInteraction(ray);
 
         isFound = true;
-        if (onFound != null)
-            onFound(this);
+        //if (onFound != null)
+        //    onFound(info);
+        UIManager.Instance.UpdateInventoryInfoItem(level, info);
+        UIManager.Instance.ShowItemInfoCanvas(info);
 
         gameObject.SetActive(false);
     }

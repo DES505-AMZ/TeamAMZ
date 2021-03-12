@@ -5,7 +5,7 @@ using UnityEngine;
 public class PatrolPath : MonoBehaviour
 {
     [Tooltip("Enemies that will be assigned to this path on Start")]
-    public List<EnemyController> enemiesToAssign = new List<EnemyController>();
+    public List<CharacterNavBase> charactersToAssign = new List<CharacterNavBase>();
     [Tooltip("The Nodes making up the path")]
     public List<Transform> pathNodes = new List<Transform>();
 
@@ -22,9 +22,9 @@ public class PatrolPath : MonoBehaviour
 
     private void Start()
     {
-        foreach(var enemy in enemiesToAssign)
+        foreach(var character in charactersToAssign)
         {
-            enemy.patrolPath = this;
+            character.patrolPath = this;
         }
     }
 
