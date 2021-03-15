@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Turqoise
+  m_Shader: {fileID: -6465566751694194690, guid: 6fd56dd5469fb224e886e2a845669fed,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_570568F8:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_C68C3210:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_D298B8ED:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_653A71B3: 0.05
+    - Vector1_7CA686A9: 2
+    - Vector1_9208F5E1: 1.2
+    - Vector1_979BD825: 0.1
+    - Vector1_B2B30F33: 4
+    - Vector1_C1F37C47: 0
+    - Vector1_DFC64297: 1
+    m_Colors:
+    - Color_13D4DC51: {r: 0.4695827, g: 1.951991, b: 1.2308195, a: 1}
+    - Color_40DB6569: {r: 1, g: 1, b: 1, a: 0}
+    - Color_4D39E1E9: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 0}
+  m_BuildTextureStacks: []
