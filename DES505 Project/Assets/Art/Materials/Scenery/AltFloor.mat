@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Elevator5
-  m_Shader: {fileID: -6465566751694194690, guid: 6fd56dd5469fb224e886e2a845669fed,
+  m_Name: AltFloor
+  m_Shader: {fileID: -6465566751694194690, guid: db7c523045956854dae8336b2feff69c,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -34,14 +34,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_653A71B3: 0.01
-    - Vector1_7CA686A9: 0
-    - Vector1_9208F5E1: 1.2
-    - Vector1_979BD825: 0.1
-    - Vector1_B2B30F33: 4
+    - Vector1_9208F5E1: 0
+    - Vector1_979BD825: 0
     - Vector1_C1F37C47: 0
-    - Vector1_DFC64297: 1
     m_Colors:
-    - Color_13D4DC51: {r: 0.32777813, g: 0.34191445, b: 0.084376216, a: 0}
-    - Color_40DB6569: {r: 1, g: 1, b: 1, a: 0}
-    - Color_4D39E1E9: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 0}
+    - Color_13D4DC51: {r: 0.17254902, g: 0.1882353, b: 0.2, a: 0}
+    - Color_40DB6569: {r: 0.45098042, g: 0.47058827, b: 0.48627454, a: 0}
+    - Color_4D39E1E9: {r: 0.45098042, g: 0.47058827, b: 0.48627454, a: 0}
   m_BuildTextureStacks: []

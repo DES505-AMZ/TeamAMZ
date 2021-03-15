@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6934794589221050838}
   - component: {fileID: 6934794589221050834}
   - component: {fileID: 6934794589221050833}
+  - component: {fileID: -820795911991944817}
   m_Layer: 0
-  m_Name: PhysicsBox
+  m_Name: PhysicsBox 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6934794589221050837}
-  m_Mesh: {fileID: 2671181486088055837, guid: 1966371c0ad41ce4194a0a2be36cc7d8, type: 3}
+  m_Mesh: {fileID: -5860767867133372222, guid: 1966371c0ad41ce4194a0a2be36cc7d8, type: 3}
 --- !u!23 &6934794589221050838
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -95,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0032041608, y: 0.0024243703, z: 0.0024081233}
-  m_Center: {x: 0, y: 0, z: 0.0012040614}
+  m_Size: {x: 0.0032041608, y: 0.002405522, z: 0.00061694667}
+  m_Center: {x: 0, y: 0, z: 0.00030847295}
 --- !u!54 &6934794589221050833
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,3 +114,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-820795911991944817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6934794589221050837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc5c6b03104a1043b17d7ec6ff60798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 240
+  freezeLength: 1

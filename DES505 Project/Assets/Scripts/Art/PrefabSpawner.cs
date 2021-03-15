@@ -27,14 +27,14 @@ public class PrefabSpawner : MonoBehaviour
     {
         int index = Random.Range(0, objects.Length - 1);
         GameObject spawnIn = objects[index];
-        GameObject.Instantiate(spawnIn, transform.position, Quaternion.Euler(spawnIn.transform.rotation.x, Random.Range(-180,180), spawnIn.transform.rotation.z));
+        GameObject.Instantiate(spawnIn, transform.position, Quaternion.Euler(-90, Random.Range(-180,180), spawnIn.transform.rotation.z));
 
         StartCoroutine(coolDown());
     }
 
     IEnumerator coolDown()
     {
-        yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+        yield return new WaitForSeconds((float) Random.Range(minTime, maxTime));
         spawn();
     }
 }
