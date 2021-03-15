@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b74ab3f7e3a3f341aff1bc5755bb05d, type: 3}
+  m_Name: Unlock Phone
+  m_EditorClassIdentifier: 
+  itemName: Unlocked Phone
+  itemImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  itemInfo: "\r10:30 am\r\nFriend: \u201CDude I already took your dog out for a walk
+    this morning. You own me one.\u201D\r\nEric: \u201Cthx. I\u2019ll  take a beer
+    to u tonight.\u201D\r\nFriend: \u201COh wait :-( I thought your boss never allow
+    you to use phone while you are working\u201D\r\nEric: \u201C yea u are right.
+    I even didnt have time to go to toilet till now. meaning I cant stand anymore
+    :(\u201C\r\nFriend: \u201CSounds terrible :( What happen?\u201D\r\nEric: \u201Coh
+    my working area is far away from the toilet. if I leave for a while, the management
+    system will regard my state as idle and I will lose some money.\u201D\r\nFriend:
+    \u201CHmm, that\u2019s too bad, hope you are fine. But the management system
+    sounds cool :D\u201D\r\nEric: \u201Cyea it is very powerful, it will always detect
+    if you are working, I mean, inhumane. I think I have got cystitis by the way,
+    feel bad.\u201D\r\nEric: \u201Cdude I need to go back, my boss is calling me.
+    hope he\u2019s not gonna check my phone.\u201D\r\nEric: \u201COK. See you at
+    night ;)\u201D\r\n"

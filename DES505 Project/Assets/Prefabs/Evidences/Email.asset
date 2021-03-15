@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b74ab3f7e3a3f341aff1bc5755bb05d, type: 3}
+  m_Name: Email
+  m_EditorClassIdentifier: 
+  itemName: Email
+  itemImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  itemInfo: "Nathan(draft name)\r\nFriday 20xx/xx/xx\r\nRecipient: Grey\r\n\r\nMr.
+    Grey\r\nRecently the company executives are very dissatisfied with the performance
+    of our department. I order you to do everything possible to improve our performance
+    (I like rough methods).\r\n\r\nIn addition, I have confirmed the list of whistleblowers
+    that you provided to the outside media and made those whistleblowers be punished.
+    Well-done.\r\n\r\nIf the performance of our department improves this time, I
+    will promote you.\r\n\r\nI look forward to your performance\r"
