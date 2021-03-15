@@ -122,20 +122,19 @@ public class PlayerController : Singleton<PlayerController>
 
     void FixedUpdate()
     {
-        
-
         HandleMovement();
     }
 
     void HandleLookRotation()
     {
         // horizontal character rotation
-        transform.Rotate(new Vector3(0f, m_inputHandler.GetLookInputsHorizontal() * rotationSpeed * RotationMultiplier, 0f), Space.Self);
+        m_playerHorizontalAngle += m_inputHandler.GetLookInputsHorizontal() * rotationSpeed * RotationMultiplier;
+        transform.rotation = Quaternion.Euler(0f, m_playerHorizontalAngle, 0f);
 
         // vertical camera rotation
         m_cameraVerticalAngle -= m_inputHandler.GetLookInputsVertical() * rotationSpeed * RotationMultiplier;
         m_cameraVerticalAngle = Mathf.Clamp(m_cameraVerticalAngle, -70f, 70f);
-        playerCamera.transform.localEulerAngles = new Vector3(m_cameraVerticalAngle, 0f, 0f);
+        playerCamera.transform.localRotation = Quaternion.Euler(m_cameraVerticalAngle, 0f, 0f);
     }
 
     void HandleMovement()

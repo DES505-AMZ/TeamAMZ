@@ -5,7 +5,6 @@ using UnityEngine;
 public class UIInventoryCanvas : MonoBehaviour
 {
     public Dictionary<GameConstants.LevelArea, UIInventoryPanel> panels = new Dictionary<GameConstants.LevelArea, UIInventoryPanel>();
-    //public List<UIInventoryPanel> panelList = new List<UIInventoryPanel>();
 
     void Awake()
     {

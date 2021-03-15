@@ -11,6 +11,12 @@ public class UIManager : Singleton<UIManager>
 
     GameObject currentCanvas;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        inventoryCanvas.gameObject.SetActive(true);
+    }
+
     void Start()
     {
         inventoryCanvas.gameObject.SetActive(false);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(RespawnController))]
+//[RequireComponent(typeof(NavMeshAgent), typeof(RespawnController))]
 public class CharacterNavBase : MonoBehaviour
 {
     public float pathReachingRadius = 3f;
