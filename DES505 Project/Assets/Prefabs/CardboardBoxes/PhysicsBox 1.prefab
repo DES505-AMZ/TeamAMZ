@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6934794589221050833}
   - component: {fileID: -820795911991944817}
   m_Layer: 0
-  m_Name: PhysicsBox
-  m_TagString: Untagged
+  m_Name: PhysicsBox 1
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
