@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bottle Label
+  m_Name: BottleCap
   m_Shader: {fileID: -6465566751694194690, guid: 6fd56dd5469fb224e886e2a845669fed,
     type: 3}
   m_ShaderKeywords: 
@@ -41,7 +41,7 @@ Material:
     - Vector1_C1F37C47: 0.218
     - Vector1_DFC64297: 1
     m_Colors:
-    - Color_13D4DC51: {r: 0.38314348, g: 0.6603774, b: 0.5082542, a: 0}
+    - Color_13D4DC51: {r: 0.31132078, g: 0.08295323, b: 0.0748932, a: 0}
     - Color_40DB6569: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 0}
     - Color_4D39E1E9: {r: 0.745283, g: 0.73473656, b: 0.73473656, a: 0}
   m_BuildTextureStacks: []
