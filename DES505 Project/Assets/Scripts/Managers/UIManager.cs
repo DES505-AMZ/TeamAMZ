@@ -8,6 +8,8 @@ public class UIManager : Singleton<UIManager>
     public UIInventoryCanvas inventoryCanvas;
     public UIItemInfoCanvas itemInfoCanvas;
     public Canvas cameraCanvas;
+    public GameObject defaultVolume;
+    public GameObject cameraVolume;
 
     GameObject currentCanvas;
 
@@ -22,6 +24,8 @@ public class UIManager : Singleton<UIManager>
         inventoryCanvas.gameObject.SetActive(false);
         itemInfoCanvas.gameObject.SetActive(false);
         cameraCanvas.gameObject.SetActive(false);
+        defaultVolume.SetActive(true);
+        cameraVolume.SetActive(false);
     }
 
     void Update()
@@ -66,10 +70,18 @@ public class UIManager : Singleton<UIManager>
 
     public void SetCameraCanvasVisible(bool isVisible)
     {
-        if(isVisible)
+        if (isVisible)
+        {
             cameraCanvas.gameObject.SetActive(true);
+            defaultVolume.SetActive(false);
+            cameraVolume.SetActive(true);
+        }
         else
+        {
             cameraCanvas.gameObject.SetActive(false);
+            defaultVolume.SetActive(true);
+            cameraVolume.SetActive(false);
+        }
     }
 
 }
