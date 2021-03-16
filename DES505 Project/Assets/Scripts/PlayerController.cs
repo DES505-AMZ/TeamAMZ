@@ -35,6 +35,12 @@ public class PlayerController : Singleton<PlayerController>
     public float capsuleHeightStanding = 2f;
     public float capsuleHeightCrouching = 1f;
     public float crouchingSharpness = 10f;
+
+    [Header("Sandy's Camera FX")]
+    public AudioSource audioS;
+    public AudioClip cameraFX;
+    public Animator flashAnim;
+
     public Vector3 headPosition
     {
         get
@@ -225,6 +231,8 @@ public class PlayerController : Singleton<PlayerController>
         if(m_isAiming && m_inputHandler.GetInteractInputDown())
         {
             StartCoroutine(FreezeCamera(freezeSeconds));
+            audioS.PlayOneShot(cameraFX);
+            flashAnim.SetTrigger("Flash");
             // check whether the photo is evidence
             if (onPhoto != null)
             {
