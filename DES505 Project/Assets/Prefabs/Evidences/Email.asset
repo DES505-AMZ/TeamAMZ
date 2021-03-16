@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Email
   itemImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  itemInfo: "Nathan(draft name)\r\nFriday 20xx/xx/xx\r\nRecipient: Grey\r\n\r\nMr.
-    Grey\r\nRecently the company executives are very dissatisfied with the performance
-    of our department. I order you to do everything possible to improve our performance
-    (I like rough methods).\r\n\r\nIn addition, I have confirmed the list of whistleblowers
-    that you provided to the outside media and made those whistleblowers be punished.
+  itemInfo: "Nathan\nFriday 20xx/xx/xx\r\nRecipient: Grey\r\n\r\nMr. Grey\r\nRecently
+    the company executives are very dissatisfied with the performance of our department.
+    I order you to do everything possible to improve our performance (I like rough
+    methods).\r\n\r\nIn addition, I have confirmed the list of whistleblowers that
+    you provided to the outside media and made those whistleblowers be punished.
     Well-done.\r\n\r\nIf the performance of our department improves this time, I
     will promote you.\r\n\r\nI look forward to your performance\r"
