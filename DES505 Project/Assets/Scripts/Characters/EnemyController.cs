@@ -36,16 +36,25 @@ public class EnemyController : CharacterNavBase
     public float orientationSpeed = 10f;
     public bool shakeCamera = true;
 
-    Animator m_animator;
+    [Header("Audio clips")]
+    public AudioClip clipCloseTargetUnnoticed;
+    public AudioClip clipLostTarget;
+    public AudioClip[] clipsDetectTarget;
+    AudioSource m_audioSource;
+
     PlayerController m_targetPlayer;
     Transform m_nearbyTarget;
     bool m_isSeeingTarget;
+
+    private void Awake()
+    {
+        m_audioSource = GetComponent<AudioSource>();
+    }
 
     protected override void Start()
     {
         base.Start();
 
-        m_animator = GetComponent<Animator>();
         eyePoint = transform.GetChild(0);
         if (eyePoint == null)
             eyePoint = transform;
@@ -68,12 +77,6 @@ public class EnemyController : CharacterNavBase
         UpdateAIStateTransitions();
         UpdateCurrentAIState();
         SetNavAgentMaxSpeed(maxMoveSpeed);
-
-        if (m_animator)
-        {
-            m_animator.SetFloat("MoveSpeed", currentSpeed);
-            m_animator.speed = currentSpeed > 1f ? currentSpeed : 1f;
-        }
     }
 
     void UpdateAIStateTransitions()
@@ -138,6 +141,7 @@ public class EnemyController : CharacterNavBase
         yield return new WaitForSeconds(lostTargetTimeout);
         if (!m_isSeeingTarget)
         {
+            m_audioSource.PlayOneShot(clipLostTarget);
             aiState = AIState.Patrol;
             LookOrientTowards(eyePoint.position + transform.forward);
             SetPathDestinationToClosestNode();           
@@ -156,7 +160,7 @@ public class EnemyController : CharacterNavBase
             {
                 RaycastHit hit;
                 if(Physics.Raycast(eyePoint.position, targetDir, out hit, sightRange))
-                {                   
+                {                    
                     if(hit.collider.gameObject == m_targetPlayer.gameObject)
                     {
                         m_isSeeingTarget = true;
@@ -175,7 +179,8 @@ public class EnemyController : CharacterNavBase
         if (lookDirection.sqrMagnitude != 0f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            eyePoint.rotation = Quaternion.Slerp(eyePoint.rotation, targetRotation, orientationSpeed);
+            transform.rotation = Quaternion.Slerp(eyePoint.rotation, targetRotation, orientationSpeed);
+            //eyePoint.rotation = Quaternion.Slerp(eyePoint.rotation, targetRotation, orientationSpeed);
         }
     }
 

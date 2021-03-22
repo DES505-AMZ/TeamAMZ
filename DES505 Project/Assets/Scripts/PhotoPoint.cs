@@ -14,15 +14,15 @@ public class PhotoPoint : MonoBehaviour
 
     public bool isFound { get; private set; }
 
-    public UnityAction onFound;
+    public UnityAction<PhotoPoint> onFound;
 
     void Start()
     {
-        PlayerController.Instance.onPhoto += OnPhotoTake;
+        //LevelManager.Instance.player.onPhoto += OnPhotoTake;
         isFound = false;
     }
 
-    void OnPhotoTake(Ray ray)
+    public void OnPhotoTake(Ray ray)
     {
         float dist = Vector3.Distance(transform.position, ray.origin);
         if(dist < photoDistance)
@@ -33,10 +33,10 @@ public class PhotoPoint : MonoBehaviour
                 if(!Physics.Raycast(ray, photoDistance, layerMask))
                 {
                     isFound = true;
-                    PlayerController.Instance.onPhoto -= OnPhotoTake;
-                    UIManager.Instance.UpdateInventoryInfoPhoto(level);
+                    //PlayerController.Instance.onPhoto -= OnPhotoTake;
+                    //UIManager.Instance.UpdateInventoryInfoPhoto(level);
                     if (onFound != null)
-                        onFound();
+                        onFound(this);
                 }
             }
         }

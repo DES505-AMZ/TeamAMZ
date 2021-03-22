@@ -33,13 +33,14 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
-        
-        if(currentScene != currentSceneName)
-        {
-            currentSceneName = currentScene;
-            UpdateState(GameState.RUNNING);
-        }
+        //string currentScene = SceneManager.GetActiveScene().name;
+
+        //if(currentScene != currentSceneName)
+        //{
+        //    currentSceneName = currentScene;
+        //    UpdateState(GameState.RUNNING);
+        //}
+        UpdateState(GameState.RUNNING);
     }
 
     void UpdateState(GameState state)

@@ -336,7 +336,7 @@ MonoBehaviour:
   - {fileID: 3746529602067350321}
   - {fileID: 8021545879129782850}
   photoCheckSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  photoUncheckSprite: {fileID: 0}
+  photoUncheckSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1001 &1211555746528870231
 PrefabInstance:
   m_ObjectHideFlags: 0

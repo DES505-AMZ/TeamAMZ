@@ -21,7 +21,7 @@ public class CheckPoint : MonoBehaviour
     {
         if(!triggered)
         {
-            if (other.gameObject == PlayerController.Instance.gameObject)
+            if (other.gameObject.tag == GameConstants.k_TagNamePlayer)
                 Trigger();
         }
     }
@@ -40,18 +40,12 @@ public class CheckPoint : MonoBehaviour
 
         if (onTrigger != null)
             onTrigger(this);
-
-        PlayerController.Instance.onCaught += OnResetCheckPoint;
     }
 
-    void OnResetCheckPoint()
+    public void OnResetCheckPoint()
     {
-        if (CheckPointManager.Instance.CurrentCheckPoint == this)
-        {
-            if (onRestart != null)
-                onRestart.Invoke();
-
-            PlayerController.Instance.Restart(playerRespawnLocation);
-        }
+        //LevelManager.Instance.player.Initialize(playerRespawnLocation);
+        if (onRestart != null)
+            onRestart.Invoke();
     }
 }

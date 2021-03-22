@@ -15,7 +15,7 @@ public class UIInventoryPanel : MonoBehaviour
 
     int nextButtonIndex = 0;
 
-    private void Start()
+    private void Awake()
     {
         photoCheckImage.sprite = photoUncheckSprite;
     }

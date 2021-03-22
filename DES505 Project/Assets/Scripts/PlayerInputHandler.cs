@@ -96,6 +96,26 @@ public class PlayerInputHandler : MonoBehaviour
         return false;
     }
 
+    public bool GetRunInputDown()
+    {
+        if (canProcessInput)
+        {
+            return Input.GetButtonDown(GameConstants.k_ButtonNameRun);
+        }
+
+        return false;
+    }
+
+    public bool GetRunInputReleased()
+    {
+        if (canProcessInput)
+        {
+            return Input.GetButtonUp(GameConstants.k_ButtonNameRun);
+        }
+
+        return false;
+    }
+
     float GetLookAxis(string mouseInputName)
     {
         if(canProcessInput)

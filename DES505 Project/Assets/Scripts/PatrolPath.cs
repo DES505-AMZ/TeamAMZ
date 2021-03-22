@@ -18,11 +18,8 @@ public class PatrolPath : MonoBehaviour
                 pathNodes.Add(child);
             }
         }
-    }
 
-    private void Start()
-    {
-        foreach(var character in charactersToAssign)
+        foreach (var character in charactersToAssign)
         {
             character.patrolPath = this;
         }

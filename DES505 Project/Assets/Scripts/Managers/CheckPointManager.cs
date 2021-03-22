@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CheckPointManager : Singleton<CheckPointManager>
 {
-    public List<CheckPoint> CheckPoints { get { return checkPoints; } }
     public CheckPoint CurrentCheckPoint { get { return checkPoints.Count > 0 ? checkPoints[curIndex] : null; } }
 
-    List<CheckPoint> checkPoints = new List<CheckPoint>();
+    public List<CheckPoint> checkPoints = new List<CheckPoint>();
     public int curIndex = 0;
+
+    public UnityAction onCheckPointReset;
+
+    public bool resetAllCheckPoints = false;
 
     protected override void Awake()
     {
@@ -28,5 +32,23 @@ public class CheckPointManager : Singleton<CheckPointManager>
     public void OnCheckPointTriggered(CheckPoint newCheckPoint)
     {
         curIndex = checkPoints.IndexOf(newCheckPoint);
+    }
+
+    public void ResetCurrentCheckPoint()
+    {
+        if(!resetAllCheckPoints)
+            CurrentCheckPoint.OnResetCheckPoint();
+        else
+        {
+            foreach(CheckPoint point in checkPoints)
+            {
+                point.OnResetCheckPoint();
+            }
+        }
+
+        if(onCheckPointReset != null)
+        {
+            onCheckPointReset();
+        }
     }
 }

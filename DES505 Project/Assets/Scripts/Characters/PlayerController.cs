@@ -141,7 +141,7 @@ public class PlayerController : Singleton<PlayerController>
         m_cameraVerticalAngle -= m_inputHandler.GetLookInputsVertical() * rotationSpeed * RotationMultiplier;
         m_cameraVerticalAngle = Mathf.Clamp(m_cameraVerticalAngle, -70f, 70f);
         playerCamera.transform.localRotation = Quaternion.Euler(m_cameraVerticalAngle, 0f, 0f);
-    }
+    } 
 
     void HandleMovement()
     {
@@ -279,6 +279,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+
             if (onCaught != null)
                 onCaught();
         }

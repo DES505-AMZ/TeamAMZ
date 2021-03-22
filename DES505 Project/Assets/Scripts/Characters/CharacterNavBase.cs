@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 //[RequireComponent(typeof(NavMeshAgent), typeof(RespawnController))]
 public class CharacterNavBase : MonoBehaviour
@@ -20,12 +21,18 @@ public class CharacterNavBase : MonoBehaviour
         }
     }
 
+    public UnityAction onReset;
+
     protected int m_patrolNodeIndex;
     protected RespawnController m_respawnController;
 
+    protected void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
     protected virtual void Start()
     {        
-        navMeshAgent = GetComponent<NavMeshAgent>();
         SetPathDestinationToClosestNode();
 
         m_respawnController = GetComponent<RespawnController>();
@@ -36,9 +43,11 @@ public class CharacterNavBase : MonoBehaviour
     public virtual void OnRespawn()
     {
         SetPathDestinationToClosestNode();
+        if (onReset != null)
+            onReset();
     }
 
-    protected void SetNavDestination(Vector3 destination)
+    public void SetNavDestination(Vector3 destination)
     {
         if (navMeshAgent)
         {
@@ -46,22 +55,22 @@ public class CharacterNavBase : MonoBehaviour
         }
     }
 
-    protected void SetNavAgentMaxSpeed(float speed)
+    public void SetNavAgentMaxSpeed(float speed)
     {
         navMeshAgent.speed = speed;
     }
 
-    protected bool DestinationArrived()
+    public bool DestinationArrived()
     {
         return !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance;
     }
 
-    protected bool IsPathValid()
+    public bool IsPathValid()
     {
         return patrolPath && patrolPath.pathNodes.Count > 0;
     }
 
-    protected void UpdatePathDestination(bool inverseOrder = false)
+    public void UpdatePathDestination(bool inverseOrder = false)
     {
         if (IsPathValid())
         {
@@ -77,13 +86,11 @@ public class CharacterNavBase : MonoBehaviour
                 {
                     m_patrolNodeIndex -= patrolPath.pathNodes.Count;
                 }
-
-
             }
         }
     }
 
-    protected void SetPathDestinationToClosestNode()
+    public void SetPathDestinationToClosestNode()
     {
         if (IsPathValid())
         {
@@ -101,5 +108,14 @@ public class CharacterNavBase : MonoBehaviour
         {
             m_patrolNodeIndex = 0;
         }
+    }
+
+    public Vector3 GetPatrolPathDestination()
+    {
+        if (IsPathValid())
+        {
+            return patrolPath.GetPositionOfPathNode(m_patrolNodeIndex);
+        }
+        return Vector3.zero;
     }
 }
