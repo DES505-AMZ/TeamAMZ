@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     {
         if (location)
         {
-            transform.position = new Vector3(location.position.x, transform.position.y, location.position.z);
+            transform.position = new Vector3(location.position.x, location.position.y, location.position.z);
             transform.rotation = location.rotation;
         }
 

@@ -10,10 +10,12 @@ public class UIManager : Singleton<UIManager>
     public UIItemInfoCanvas itemInfoCanvas;
     public Canvas cameraCanvas;
     public Canvas gameoverCanvas;
+    public Canvas billboardCanvas;
     public GameObject defaultVolume;
     public GameObject cameraVolume;
-
+    
     GameObject currentCanvas;
+    bool isShowing;
 
     public UnityAction onButtonBackToCheckPoint;
 
@@ -25,10 +27,12 @@ public class UIManager : Singleton<UIManager>
 
     void Start()
     {
+        isShowing = false;
         inventoryCanvas.gameObject.SetActive(false);
         itemInfoCanvas.gameObject.SetActive(false);
         cameraCanvas.gameObject.SetActive(false);
         gameoverCanvas.gameObject.SetActive(false);
+        billboardCanvas.gameObject.SetActive(false);
         defaultVolume.SetActive(true);
         cameraVolume.SetActive(false);
     }
@@ -53,6 +57,15 @@ public class UIManager : Singleton<UIManager>
             }
         }
 
+        if(isShowing)
+        {
+            if(Input.GetButtonDown(GameConstants.k_ButtonNameAim))
+            {
+                isShowing = false;
+                billboardCanvas.gameObject.SetActive(false);
+                GameManager.Instance.ResumeGame();
+            }
+        }
     }
 
     public void ShowItemInfoCanvas(EvidenceItem item)
@@ -101,5 +114,12 @@ public class UIManager : Singleton<UIManager>
         gameoverCanvas.gameObject.SetActive(false);
         if (onButtonBackToCheckPoint != null)
             onButtonBackToCheckPoint();
+    }
+
+    public void ShowBillboardCanvas()
+    {
+        GameManager.Instance.PauseGame();
+        billboardCanvas.gameObject.SetActive(true);
+        isShowing = true;
     }
 }
