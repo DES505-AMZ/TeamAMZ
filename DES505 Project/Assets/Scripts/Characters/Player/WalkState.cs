@@ -20,19 +20,19 @@ public class WalkState : PlayerStateBase
     public override void UpdateLogic(Player player)
     {
         player.UpdateCharacterHeight(true);
+
+        if (player.inputHandler.GetCrouchInputDown())
+        {
+            player.ChangeStateMovement(player.crouchState);
+        }
+        else if (player.inputHandler.GetRunInputDown())
+        {
+            player.ChangeStateMovement(player.runState);
+        }
     }
 
     public override void UpdatePhysics(Player player)
     {
         player.HandleMovement();
-
-        if(player.inputHandler.GetCrouchInputDown())
-        {
-            player.ChangeStateMovement(player.crouchState);
-        }
-        else if(player.inputHandler.GetRunInputDown())
-        {
-            player.ChangeStateMovement(player.runState);
-        }
     }
 }

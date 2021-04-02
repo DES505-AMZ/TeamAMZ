@@ -18,16 +18,14 @@ public class RunState : PlayerStateBase
 
     public override void UpdateLogic(Player player)
     {
-
+        if (player.inputHandler.GetRunInputReleased())
+        {
+            player.ChangeStateMovement(player.walkState);
+        }
     }
 
     public override void UpdatePhysics(Player player)
     {
         player.HandleMovement();
-
-        if (player.inputHandler.GetRunInputReleased())
-        {
-            player.ChangeStateMovement(player.walkState);
-        }
     }
 }

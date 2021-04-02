@@ -20,14 +20,15 @@ public class CrouchState : PlayerStateBase
     public override void UpdateLogic(Player player)
     {
         player.UpdateCharacterHeight(true);
-    }
 
-    public override void UpdatePhysics(Player player)
-    {
-        player.HandleMovement();
         if (player.inputHandler.GetCrouchInputDown())
         {
             player.ChangeStateMovement(player.walkState);
         }
+    }
+
+    public override void UpdatePhysics(Player player)
+    {
+        player.HandleMovement();       
     }
 }
