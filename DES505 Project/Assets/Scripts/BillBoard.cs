@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BillBoard : Interactable
 {
+    public Sprite image;
+
     public override void OnInteraction(Ray ray)
     {
         base.OnInteraction(ray);
 
-        UIManager.Instance.ShowBillboardCanvas();
+        UIManager.Instance.ShowBillboardCanvas(image);
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIInventoryCanvas : MonoBehaviour
+public class UIInventoryCanvas : UICanvas
 {
     public Dictionary<GameConstants.LevelArea, UIInventoryPanel> panels = new Dictionary<GameConstants.LevelArea, UIInventoryPanel>();
 
@@ -26,5 +26,17 @@ public class UIInventoryCanvas : MonoBehaviour
     public void UpdateItemInfo(GameConstants.LevelArea levelArea, EvidenceItem item)
     {
         panels[levelArea].OnFoundItem(item);
+    }
+
+    private void Update()
+    {
+        if (isActive)
+        {
+            if (Input.GetButtonDown(GameConstants.k_ButtonNameInventory))
+            {
+                //if (gameObject.activeInHierarchy)
+                DeactivateCanvas();
+            }
+        }
     }
 }

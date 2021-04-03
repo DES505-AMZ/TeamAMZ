@@ -8,14 +8,9 @@ public class UIManager : Singleton<UIManager>
 {
     public UIInventoryCanvas inventoryCanvas;
     public UIItemInfoCanvas itemInfoCanvas;
-    public Canvas cameraCanvas;
-    public Canvas gameoverCanvas;
-    public Canvas billboardCanvas;
-    public GameObject defaultVolume;
-    public GameObject cameraVolume;
-    
-    GameObject currentCanvas;
-    bool isShowing;
+    public UICameraCanvas cameraCanvas;
+    public UIGameoverCanvas gameoverCanvas;
+    public UIBillboardCanvas billboardCanvas;
 
     public UnityAction onButtonBackToCheckPoint;
 
@@ -27,53 +22,31 @@ public class UIManager : Singleton<UIManager>
 
     void Start()
     {
-        isShowing = false;
         inventoryCanvas.gameObject.SetActive(false);
         itemInfoCanvas.gameObject.SetActive(false);
         cameraCanvas.gameObject.SetActive(false);
         gameoverCanvas.gameObject.SetActive(false);
         billboardCanvas.gameObject.SetActive(false);
-        defaultVolume.SetActive(true);
-        cameraVolume.SetActive(false);
+
+        cameraCanvas.defaultVolume.SetActive(true);
+        cameraCanvas.cameraVolume.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown(GameConstants.k_ButtonNameInventory))
         {
-            if (inventoryCanvas.gameObject.activeInHierarchy)
+            if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
             {
-                inventoryCanvas.gameObject.SetActive(false);
-                GameManager.Instance.ResumeGame();
-            }
-            else
-            {
-                if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
-                {
-                    GameManager.Instance.PauseGame();
-                    inventoryCanvas.gameObject.SetActive(true);
-                    currentCanvas = inventoryCanvas.gameObject;
-                }
-            }
-        }
-
-        if(isShowing)
-        {
-            if(Input.GetButtonDown(GameConstants.k_ButtonNameAim))
-            {
-                isShowing = false;
-                billboardCanvas.gameObject.SetActive(false);
-                GameManager.Instance.ResumeGame();
+                inventoryCanvas.ActivateCanvas();
             }
         }
     }
 
     public void ShowItemInfoCanvas(EvidenceItem item)
     {
-        if (currentCanvas != null)
-            currentCanvas.SetActive(false);
-        itemInfoCanvas.ShowItemInfo(item);
-        currentCanvas = itemInfoCanvas.gameObject;
+        itemInfoCanvas.item = item;
+        itemInfoCanvas.ActivateCanvas();
     }
 
     public void UpdateInventoryInfoPhoto(GameConstants.LevelArea level)
@@ -90,36 +63,22 @@ public class UIManager : Singleton<UIManager>
     {
         if (isVisible)
         {
-            cameraCanvas.gameObject.SetActive(true);
-            defaultVolume.SetActive(false);
-            cameraVolume.SetActive(true);
+            cameraCanvas.ActivateCanvas();
         }
         else
         {
-            cameraCanvas.gameObject.SetActive(false);
-            defaultVolume.SetActive(true);
-            cameraVolume.SetActive(false);
+            cameraCanvas.DeactivateCanvas();
         }
     }
 
     public void ShowGameoverCanvas()
     {
-        GameManager.Instance.PauseGame();
-        gameoverCanvas.gameObject.SetActive(true);
+        gameoverCanvas.ActivateCanvas();
     }
 
-    public void OnButtonBackToLastCheckPoint()
+    public void ShowBillboardCanvas(Sprite image)
     {
-        GameManager.Instance.ResumeGame();
-        gameoverCanvas.gameObject.SetActive(false);
-        if (onButtonBackToCheckPoint != null)
-            onButtonBackToCheckPoint();
-    }
-
-    public void ShowBillboardCanvas()
-    {
-        GameManager.Instance.PauseGame();
-        billboardCanvas.gameObject.SetActive(true);
-        isShowing = true;
+        billboardCanvas.sprite = image;
+        billboardCanvas.ActivateCanvas();
     }
 }

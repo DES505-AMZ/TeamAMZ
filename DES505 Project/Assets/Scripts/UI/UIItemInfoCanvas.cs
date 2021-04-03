@@ -3,26 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIItemInfoCanvas : MonoBehaviour
+public class UIItemInfoCanvas : UICanvas
 {
     public Text itemName;
     public Text itemInfo;
     public Image itemImage;
+    public EvidenceItem item;
 
-    public void ShowItemInfo(EvidenceItem item)
+    public override void ActivateCanvas()
     {
-        gameObject.SetActive(true);
-
         itemName.text = item.itemName;
         itemInfo.text = item.itemInfo;
         itemImage.sprite = item.itemImage;
 
-        GameManager.Instance.PauseGame();
+        base.ActivateCanvas();
     }
 
-    public void OnButtonClick()
+    private void Update()
     {
-        gameObject.SetActive(false);
-        GameManager.Instance.ResumeGame();
+        if (isActive)
+        {
+            if (Input.GetButtonDown(GameConstants.k_ButtonNameAim))
+            {
+                DeactivateCanvas();
+            }
+        }
     }
 }
