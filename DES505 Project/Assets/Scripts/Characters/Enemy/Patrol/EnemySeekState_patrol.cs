@@ -12,6 +12,13 @@ public class EnemySeekState_patrol : EnemySeekState
         firstSeek = false;
     }
 
+    public override void Exit(EnemyBase enemy)
+    {
+        base.Exit(enemy);
+        if(enemy.clipLostTarget != null)
+            enemy.audioSource.PlayOneShot(enemy.clipLostTarget);
+    }
+
     public override void UpdatePhysics(EnemyBase enemy)
     {
         if(!firstSeek && enemy.GetDistanceToTarget() <= enemy.sightRange)

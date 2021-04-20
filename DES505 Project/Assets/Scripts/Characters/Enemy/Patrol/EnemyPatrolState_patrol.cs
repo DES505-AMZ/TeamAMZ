@@ -22,6 +22,8 @@ public class EnemyPatrolState_patrol : EnemyPatrolState
 
         if (enemy.SightDetection())
         {
+            if(enemy.clipCloseTargetUnnoticed != null)
+                enemy.audioSource.PlayOneShot(enemy.clipCloseTargetUnnoticed);
             enemy.ChangeState(enemy.chaseState);
         }
 

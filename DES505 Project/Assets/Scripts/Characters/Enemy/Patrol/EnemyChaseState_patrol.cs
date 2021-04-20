@@ -7,8 +7,8 @@ public class EnemyChaseState_patrol : EnemyChaseState
     public override void Enter(EnemyBase enemy)
     {
         base.Enter(enemy);
-
-        enemy.audioSource.PlayOneShot(enemy.clipsDetectTarget[Random.Range(0, enemy.clipsDetectTarget.Length - 1)]);
+        if(enemy.clipsDetectTarget != null)
+            enemy.audioSource.PlayOneShot(enemy.clipsDetectTarget[Random.Range(0, enemy.clipsDetectTarget.Length - 1)]);
     }
 
     public override void UpdatePhysics(EnemyBase enemy)

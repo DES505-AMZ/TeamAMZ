@@ -308,7 +308,7 @@ MonoBehaviour:
   sightIncludedAngle: 45
   stunTimeInterval: 1
   clipCloseTargetUnnoticed: {fileID: 0}
-  clipLostTarget: {fileID: 0}
+  clipLostTarget: {fileID: 8300000, guid: 4354eca7e34acef429fc2071cffc81dd, type: 3}
   clipsDetectTarget: []
   target: {fileID: 0}
 --- !u!114 &1326666489
