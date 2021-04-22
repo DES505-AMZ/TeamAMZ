@@ -10,7 +10,8 @@
     public const string k_ButtonNameAim = "Fire2";
     public const string k_ButtonNameRun = "Run";
     public const string k_ButtonNameInventory = "Inventory";
-    public const string k_SceneNameMainMenu = "SampleScene";
+    public const string k_SceneNameMainMenu = "MainMenu";
+    public const string k_SceneNameMainLevel = "GeryBoxMainV2-Art";
     public const string k_TagNamePlayer = "Player";
     public const string k_AnimParamNameMoveSpeed = "MoveSpeed";
 

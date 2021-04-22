@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public delegate void CollectableAction(EvidenceItem item);
 public class CollectableItem : Interactable
 {
-    //MeshRenderer meshRenderer;
     bool isLookingAt = false;
     public bool isFound { get; private set; }
 
@@ -18,15 +17,15 @@ public class CollectableItem : Interactable
 
     private void Start()
     {
-        //meshRenderer = GetComponent<MeshRenderer>();
+
     }
 
     private void FixedUpdate()
     {
-        //if(isLookingAt)
-        //    meshRenderer.material.SetColor("_BaseColor", Color.green);
-        //else
-        //    meshRenderer.material.SetColor("_BaseColor", Color.red);
+        if (isLookingAt)
+            UIManager.Instance.ShowItemCollectCanvas(true);
+        else
+            UIManager.Instance.ShowItemCollectCanvas(false);
         isLookingAt = false;
     }
 

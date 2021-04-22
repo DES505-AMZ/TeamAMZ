@@ -11,6 +11,7 @@ public class UIManager : Singleton<UIManager>
     public UICameraCanvas cameraCanvas;
     public UIGameoverCanvas gameoverCanvas;
     public UIBillboardCanvas billboardCanvas;
+    public UIItemCollectCanvas collectCanvas;
 
     public UnityAction onButtonBackToCheckPoint;
 
@@ -27,6 +28,7 @@ public class UIManager : Singleton<UIManager>
         cameraCanvas.gameObject.SetActive(false);
         gameoverCanvas.gameObject.SetActive(false);
         billboardCanvas.gameObject.SetActive(false);
+        collectCanvas.gameObject.SetActive(false);
 
         cameraCanvas.defaultVolume.SetActive(true);
         cameraCanvas.cameraVolume.SetActive(false);
@@ -36,7 +38,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (Input.GetButtonDown(GameConstants.k_ButtonNameInventory))
         {
-            if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
+            if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING && !cameraCanvas.gameObject.activeInHierarchy)
             {
                 inventoryCanvas.ActivateCanvas();
             }
@@ -45,6 +47,8 @@ public class UIManager : Singleton<UIManager>
 
     public void ShowItemInfoCanvas(EvidenceItem item)
     {
+        inventoryCanvas.DeactivateCanvas();
+        collectCanvas.DeactivateCanvas();
         itemInfoCanvas.item = item;
         itemInfoCanvas.ActivateCanvas();
     }
@@ -80,5 +84,17 @@ public class UIManager : Singleton<UIManager>
     {
         billboardCanvas.sprite = image;
         billboardCanvas.ActivateCanvas();
+    }
+
+    public void ShowItemCollectCanvas(bool isVisible)
+    {
+        if (isVisible)
+        {
+            collectCanvas.ActivateCanvas();
+        }
+        else
+        {
+            collectCanvas.DeactivateCanvas();
+        }
     }
 }

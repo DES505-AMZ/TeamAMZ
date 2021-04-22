@@ -8,8 +8,9 @@ public class LevelManager : Singleton<LevelManager>
     public TannoySystem tannoy;
     public PhotoPoint[] photoPoints;
     int numPhotoFound = 0;
+    bool canEndGame = false;
 
-    private void Awake()
+    private void Start()
     {
         player = FindObjectOfType<Player>();
         tannoy = FindObjectOfType<TannoySystem>();
@@ -17,15 +18,12 @@ public class LevelManager : Singleton<LevelManager>
 
         player.onCaught += OnPlayerCaught;
 
-        for (int i=0; i<photoPoints.Length; ++i)
+        for (int i = 0; i < photoPoints.Length; ++i)
         {
             photoPoints[i].onFound += OnPhotoFound;
             player.onPhoto += photoPoints[i].OnPhotoTake;
         }
-    }
 
-    private void Start()
-    {
         UIManager.Instance.onButtonBackToCheckPoint += OnBackToCheckPoint;
     }
 
@@ -34,6 +32,10 @@ public class LevelManager : Singleton<LevelManager>
         player.onPhoto -= point.OnPhotoTake;
         UIManager.Instance.UpdateInventoryInfoPhoto(point.level);
         tannoy.PlayPhotoFound(numPhotoFound++);
+        if(numPhotoFound == photoPoints.Length)
+        {
+            canEndGame = true;
+        }
     }
 
     void OnPlayerCaught()
@@ -45,5 +47,14 @@ public class LevelManager : Singleton<LevelManager>
     {
         player.Initialize(CheckPointManager.Instance.CurrentCheckPoint.playerRespawnLocation);
         CheckPointManager.Instance.ResetCurrentCheckPoint();
+    }
+
+    public void EndGame()
+    {
+        if(canEndGame)
+        {
+            Debug.Log("End game");
+            GameManager.Instance.RestartGame();
+        }
     }
 }

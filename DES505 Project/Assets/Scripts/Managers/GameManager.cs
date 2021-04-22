@@ -33,14 +33,15 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        //string currentScene = SceneManager.GetActiveScene().name;
+        string currentScene = SceneManager.GetActiveScene().name;
 
         //if(currentScene != currentSceneName)
         //{
         //    currentSceneName = currentScene;
         //    UpdateState(GameState.RUNNING);
         //}
-        UpdateState(GameState.RUNNING);
+        if(currentScene == GameConstants.k_SceneNameMainLevel)
+            UpdateState(GameState.RUNNING);
     }
 
     void UpdateState(GameState state)
@@ -114,17 +115,20 @@ public class GameManager : Singleton<GameManager>
         ao.completed += OnUnloadOperationComplete;
     }
 
-    void StartGame()
+    public void StartGame()
     {
+        LoadLevel(GameConstants.k_SceneNameMainLevel);
+        UpdateState(GameState.RUNNING);       
+    }
+
+    public void RestartGame()
+    {
+        UpdateState(GameState.PREGAME);
+        UnloadLevel(GameConstants.k_SceneNameMainLevel);
         LoadLevel(GameConstants.k_SceneNameMainMenu);
     }
 
-    void RestartGame()
-    {
-        UpdateState(GameState.PREGAME);
-    }
-
-    void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }

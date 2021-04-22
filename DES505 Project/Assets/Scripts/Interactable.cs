@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
 {
     public virtual void OnInteraction(Ray ray)
     {
-        Debug.Log("Interact with " + gameObject.name);
+        //Debug.Log("Interact with " + gameObject.name);
     }
 
     public virtual void OnLookAt()
