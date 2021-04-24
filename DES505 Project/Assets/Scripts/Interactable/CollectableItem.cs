@@ -7,26 +7,17 @@ using UnityEngine.UI;
 public delegate void CollectableAction(EvidenceItem item);
 public class CollectableItem : Interactable
 {
-    bool isLookingAt = false;
     public bool isFound { get; private set; }
 
     //public event CollectableAction onFound;
 
     public GameConstants.LevelArea level;
     public EvidenceItem info;
+    public string promptText = "Collect Evidence";
 
     private void Start()
     {
 
-    }
-
-    private void FixedUpdate()
-    {
-        if (isLookingAt)
-            UIManager.Instance.ShowItemCollectCanvas(true);
-        else
-            UIManager.Instance.ShowItemCollectCanvas(false);
-        isLookingAt = false;
     }
 
     public override void OnInteraction(Ray ray)
@@ -44,6 +35,11 @@ public class CollectableItem : Interactable
 
     public override void OnLookAt()
     {
-        isLookingAt = true;
+        UIManager.Instance.ShowPromptCanvas(true, promptText);
+    }
+
+    public override void OnLookExit()
+    {
+        UIManager.Instance.ShowPromptCanvas(false);
     }
 }

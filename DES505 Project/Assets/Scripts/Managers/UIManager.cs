@@ -11,7 +11,8 @@ public class UIManager : Singleton<UIManager>
     public UICameraCanvas cameraCanvas;
     public UIGameoverCanvas gameoverCanvas;
     public UIBillboardCanvas billboardCanvas;
-    public UIItemCollectCanvas collectCanvas;
+    public UIPromptCanvas promptCanvas;
+    public UIPromptTextCanvas promptTextCanvas;
 
     public UnityAction onButtonBackToCheckPoint;
 
@@ -28,7 +29,8 @@ public class UIManager : Singleton<UIManager>
         cameraCanvas.gameObject.SetActive(false);
         gameoverCanvas.gameObject.SetActive(false);
         billboardCanvas.gameObject.SetActive(false);
-        collectCanvas.gameObject.SetActive(false);
+        promptCanvas.gameObject.SetActive(false);
+        promptTextCanvas.gameObject.SetActive(false);
 
         cameraCanvas.defaultVolume.SetActive(true);
         cameraCanvas.cameraVolume.SetActive(false);
@@ -48,7 +50,7 @@ public class UIManager : Singleton<UIManager>
     public void ShowItemInfoCanvas(EvidenceItem item)
     {
         inventoryCanvas.DeactivateCanvas();
-        collectCanvas.DeactivateCanvas();
+        promptCanvas.DeactivateCanvas();
         itemInfoCanvas.item = item;
         itemInfoCanvas.ActivateCanvas();
     }
@@ -67,6 +69,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (isVisible)
         {
+            promptCanvas.DeactivateCanvas();
             cameraCanvas.ActivateCanvas();
         }
         else
@@ -77,24 +80,33 @@ public class UIManager : Singleton<UIManager>
 
     public void ShowGameoverCanvas()
     {
+        promptCanvas.DeactivateCanvas();
         gameoverCanvas.ActivateCanvas();
     }
 
     public void ShowBillboardCanvas(Sprite image)
     {
+        promptCanvas.DeactivateCanvas();
         billboardCanvas.sprite = image;
         billboardCanvas.ActivateCanvas();
     }
 
-    public void ShowItemCollectCanvas(bool isVisible)
+    public void ShowPromptCanvas(bool isVisible, string str = "Interact")
     {
+        promptCanvas.UpdateText(str);
         if (isVisible)
         {
-            collectCanvas.ActivateCanvas();
+            promptCanvas.ActivateCanvas();
         }
         else
         {
-            collectCanvas.DeactivateCanvas();
+            promptCanvas.DeactivateCanvas();
         }
+    }
+
+    public void ShowPromptTextCanvas(string str = "")
+    {
+        promptTextCanvas.UpdateText(str);
+        promptTextCanvas.ActivateCanvas();
     }
 }

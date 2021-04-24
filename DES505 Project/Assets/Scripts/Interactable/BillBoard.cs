@@ -12,4 +12,14 @@ public class BillBoard : Interactable
 
         UIManager.Instance.ShowBillboardCanvas(image);
     }
+
+    public override void OnLookAt()
+    {
+        UIManager.Instance.ShowPromptCanvas(true);
+    }
+
+    public override void OnLookExit()
+    {
+        UIManager.Instance.ShowPromptCanvas(false);
+    }
 }

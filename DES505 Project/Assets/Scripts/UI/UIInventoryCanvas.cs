@@ -32,7 +32,7 @@ public class UIInventoryCanvas : UICanvas
     {
         if (isActive)
         {
-            if (Input.GetButtonDown(GameConstants.k_ButtonNameInventory))
+            if (Input.GetButtonDown(GameConstants.k_ButtonNameInventory) || Input.GetButtonDown(GameConstants.k_ButtonNameAim))
             {
                 //if (gameObject.activeInHierarchy)
                 DeactivateCanvas();

@@ -189,7 +189,11 @@ public class Player : MonoBehaviour
             return true;
         }
         else
+        {
+            if (m_interactableObject)
+                m_interactableObject.OnLookExit();
             m_interactableObject = null;
+        }
         return false;
     }
 

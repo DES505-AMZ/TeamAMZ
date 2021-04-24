@@ -10937,6 +10937,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 376362224905183931, guid: 79befac23d1ad074dab058911222c383,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462051181766584747, guid: 79befac23d1ad074dab058911222c383,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104925497050335552, guid: 79befac23d1ad074dab058911222c383,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2087572132275767028, guid: 79befac23d1ad074dab058911222c383,
         type: 3}
       propertyPath: m_Name
@@ -10945,6 +10960,21 @@ PrefabInstance:
     - target: {fileID: 3089608590929950391, guid: 79befac23d1ad074dab058911222c383,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110866070550226721, guid: 79befac23d1ad074dab058911222c383,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4977327691505725840, guid: 79befac23d1ad074dab058911222c383,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764881537170307706, guid: 79befac23d1ad074dab058911222c383,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8476447347229566690, guid: 79befac23d1ad074dab058911222c383,
@@ -98573,8 +98603,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.019781472, y: 0.065802075, z: 0.020332588}
-  m_Center: {x: 0, y: 0.0073926686, z: 0.0000000013969838}
+  m_Size: {x: 0.041421458, y: 0.06580208, z: 0.03611538}
+  m_Center: {x: -0.0017568257, y: 0.007392671, z: -0.0022728806}
 --- !u!114 &44083483898625659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98589,6 +98619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   info: {fileID: 11400000, guid: c3d04f908ae93124aae50709fb24a671, type: 2}
+  promptText: Collect Evidence
 --- !u!33 &422401475438322722
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -100197,7 +100228,7 @@ PrefabInstance:
     - target: {fileID: 7431438921528419679, guid: 9af044201717d924ba337371ba9ee81b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.88
+      value: 1.01
       objectReference: {fileID: 0}
     - target: {fileID: 7431438921528419679, guid: 9af044201717d924ba337371ba9ee81b,
         type: 3}
@@ -100207,7 +100238,7 @@ PrefabInstance:
     - target: {fileID: 7431438921528419679, guid: 9af044201717d924ba337371ba9ee81b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 38.74
+      value: 7.48
       objectReference: {fileID: 0}
     - target: {fileID: 7431438921528419679, guid: 9af044201717d924ba337371ba9ee81b,
         type: 3}

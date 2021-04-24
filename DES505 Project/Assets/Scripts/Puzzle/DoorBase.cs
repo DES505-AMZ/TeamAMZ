@@ -8,7 +8,8 @@ public class DoorBase : Interactable
     public bool hasTrigger = false;
     [Tooltip("Can player close the door by interacting?")]
     public bool canClose = false;
-    
+    public string promptTextCannotOpen = "It’s locked, I will need to find the key";
+
     protected bool m_isOpen;
     protected Ray m_playerViewRay;
     public Animator animator;
@@ -32,6 +33,10 @@ public class DoorBase : Interactable
         {
             DoorClose();
         }
+        else
+        {
+            UIManager.Instance.ShowPromptTextCanvas(promptTextCannotOpen);
+        }
     }
 
     protected virtual bool CanOpenByPlayer()
@@ -51,8 +56,15 @@ public class DoorBase : Interactable
         if(animator)
             animator.SetTrigger("CloseDoor");
         m_isOpen = false;
-
-
     }
 
+    public override void OnLookAt()
+    {
+        UIManager.Instance.ShowPromptCanvas(true);
+    }
+
+    public override void OnLookExit()
+    {
+        UIManager.Instance.ShowPromptCanvas(false);
+    }
 }
