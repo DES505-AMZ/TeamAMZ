@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
 public class TannoyTrigger : MonoBehaviour
 {
     public AudioClip audioClip;
-    BoxCollider collider;
+    public bool resetTrigger = false;
+    Collider collider;
     bool triggered = false;
 
     private void Awake()
     {
-        collider = GetComponent<BoxCollider>();
+        collider = GetComponent<Collider>();
         collider.isTrigger = true;
     }
 
@@ -27,7 +27,7 @@ public class TannoyTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!triggered)
+        if (!triggered || resetTrigger)
         {
             TannoySystem.Instance.PlayTannoyAudio(audioClip);
             triggered = true;
