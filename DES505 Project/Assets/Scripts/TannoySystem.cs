@@ -8,6 +8,7 @@ public class TannoySystem :Singleton<TannoySystem>
     public AudioClip[] clipsRandom;
     public AudioClip[] clipsKnockPackage;
     public AudioClip[] clipsPhotoFound;
+    public AudioClip[] clipsPosterFound;
 
     AudioSource audioSource;
 
@@ -15,6 +16,7 @@ public class TannoySystem :Singleton<TannoySystem>
     float randomRange = 20f;
     List<AudioClip> clipsRandomUnplayed;
     Queue<AudioClip> clipsToPlay;
+    int posterToPlayIndex = 0;
 
     protected override void Awake()
     {
@@ -35,6 +37,11 @@ public class TannoySystem :Singleton<TannoySystem>
         {
             audioSource.PlayOneShot(clipsToPlay.Dequeue());
         }
+    }
+
+    void AddPlayCommand(AudioClip clip)
+    {
+        clipsToPlay.Enqueue(clip);
     }
 
     IEnumerator PlayRandomAudio()
@@ -73,6 +80,14 @@ public class TannoySystem :Singleton<TannoySystem>
         }
     }
 
+    public void PlayPosterFound()
+    {
+        if(posterToPlayIndex < clipsPosterFound.Length)
+        {
+            AddPlayCommand(clipsPosterFound[posterToPlayIndex++]);
+        }
+    }
+
     public void PlayTannoyAudio(AudioClip clip)
     {
         Debug.Log("Play Tannoy " + clip.name);
@@ -80,8 +95,5 @@ public class TannoySystem :Singleton<TannoySystem>
         AddPlayCommand(clip);
     }
 
-    void AddPlayCommand(AudioClip clip)
-    {
-        clipsToPlay.Enqueue(clip);
-    }
+    
 }
