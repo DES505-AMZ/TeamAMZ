@@ -33,7 +33,7 @@ public class DoorBase : Interactable
         {
             DoorClose();
         }
-        else
+        else if(hasTrigger)
         {
             UIManager.Instance.ShowPromptTextCanvas(promptTextCannotOpen);
         }

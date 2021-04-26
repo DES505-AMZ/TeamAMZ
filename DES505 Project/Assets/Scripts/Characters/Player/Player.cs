@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
 
     Vector3 m_characterVelocity;
     Interactable m_interactableObject;
+    Interactable m_preInteractableObject;
 
     public float currentRotationSpeed { get; set; }
     public float targetMoveSpeed { get; set; }
@@ -184,15 +185,24 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, maxInteractionDistance))
         {
             m_interactableObject = hit.collider.GetComponent<Interactable>();
+            if (m_preInteractableObject != null && m_interactableObject != m_preInteractableObject)
+            {
+                m_preInteractableObject.OnLookExit();
+            }
             if (m_interactableObject)
+            {
                 m_interactableObject.OnLookAt();
+            }
+            m_preInteractableObject = m_interactableObject;
             return true;
         }
         else
         {
             if (m_interactableObject)
+            {
                 m_interactableObject.OnLookExit();
-            m_interactableObject = null;
+                m_interactableObject = null;
+            }
         }
         return false;
     }
