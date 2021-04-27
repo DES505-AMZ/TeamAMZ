@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 916469702180285728}
   - component: {fileID: 403051726570953472}
   - component: {fileID: 9187922624119358741}
+  - component: {fileID: 391197025116984620}
   m_Layer: 5
   m_Name: InventoryItem
   m_TagString: Untagged
@@ -147,6 +148,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 0}
   text: {fileID: 6310082431708634654}
+--- !u!114 &391197025116984620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992510699780680352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a01af09b24bf5548aa5649a8ec4e7bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
 --- !u!1 &3010118475790683757
 GameObject:
   m_ObjectHideFlags: 0

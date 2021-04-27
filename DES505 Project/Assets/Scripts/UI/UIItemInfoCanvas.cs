@@ -16,6 +16,11 @@ public class UIItemInfoCanvas : UICanvas
         itemInfo.text = item.itemInfo;
         itemImage.sprite = item.itemImage;
 
+        float aspectRatio = item.itemImage.rect.width / item.itemImage.rect.height;
+        float h = itemImage.rectTransform.rect.height;
+        float w = h * aspectRatio;
+        itemImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
+
         base.ActivateCanvas();
     }
 
