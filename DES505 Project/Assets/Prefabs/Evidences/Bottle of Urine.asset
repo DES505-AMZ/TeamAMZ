@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Bottle of Urine
   m_EditorClassIdentifier: 
   itemName: Bottle of Urine
-  itemImage: {fileID: 0}
-  itemInfo: In fear of lowering their pick rates, workers have been found to avoid
-    going to the bathroom. Instead choosing to urinate in bottles.
+  itemImage: {fileID: 21300000, guid: b23454b0dc1fb7c48933eaf753723fdc, type: 3}
+  itemInfo: 
