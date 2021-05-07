@@ -14,7 +14,7 @@ public class UIBillboardCanvas : UICanvas
         {
             image.sprite = sprite;
             float aspectRatio = sprite.rect.width / sprite.rect.height;
-            float h = Screen.height * 0.8f;
+            float h = Screen.height * 0.6f;
             float w = h * aspectRatio;
             image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, h);
             image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w);
