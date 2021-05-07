@@ -26,9 +26,9 @@ public class GameManager : Singleton<GameManager>
     string currentSceneName = string.Empty;
 
     protected override void Awake()
-    {
-        base.Awake();
-        DontDestroyOnLoad(gameObject);
+    {       
+        //DontDestroyOnLoad(this);
+        base.Awake();     
     }
 
     void Start()
@@ -109,16 +109,17 @@ public class GameManager : Singleton<GameManager>
         AsyncOperation ao = SceneManager.UnloadSceneAsync(levelName);
         if (ao == null)
         {
-            Debug.LogError("GameManager: Unable to load level" + levelName);
+            Debug.LogError("GameManager: Unable to unload level" + levelName);
             return;
         }
         ao.completed += OnUnloadOperationComplete;
+        currentSceneName = null;
     }
 
     public void StartGame()
     {
+        UpdateState(GameState.RUNNING);
         LoadLevel(GameConstants.k_SceneNameMainLevel);
-        UpdateState(GameState.RUNNING);       
     }
 
     public void RestartGame()

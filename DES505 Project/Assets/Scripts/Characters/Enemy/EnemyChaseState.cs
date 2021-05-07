@@ -16,7 +16,8 @@ public class EnemyChaseState : EnemyStateBase
 
     public override void Exit(EnemyBase enemy)
     {
-        enemy.audioSource.PlayOneShot(enemy.clipLostTarget);
+        if(enemy.clipLostTarget != null)
+            enemy.audioSource.PlayOneShot(enemy.clipLostTarget);
     }
 
     public override void UpdateLogic(EnemyBase enemy)

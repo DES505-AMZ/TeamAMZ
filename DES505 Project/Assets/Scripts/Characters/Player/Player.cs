@@ -234,8 +234,12 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            caughtState.caughtPosition = collision.transform.position;
-            ChangeStateAction(caughtState);
+            Vector3 v = transform.position - collision.gameObject.transform.position;
+            if (Vector3.Dot(v, collision.gameObject.transform.forward) > 0.5)
+            {
+                caughtState.caughtPosition = collision.transform.position;
+                ChangeStateAction(caughtState);
+            }
         }
     }
 

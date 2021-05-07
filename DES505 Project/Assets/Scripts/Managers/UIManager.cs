@@ -13,6 +13,7 @@ public class UIManager : Singleton<UIManager>
     public UIBillboardCanvas billboardCanvas;
     public UIPromptCanvas promptCanvas;
     public UIPromptTextCanvas promptTextCanvas;
+    public UIPauseMenuCanvas pauseMenuCanvas;
 
     public UnityAction onButtonBackToCheckPoint;
 
@@ -31,6 +32,7 @@ public class UIManager : Singleton<UIManager>
         billboardCanvas.gameObject.SetActive(false);
         promptCanvas.gameObject.SetActive(false);
         promptTextCanvas.gameObject.SetActive(false);
+        pauseMenuCanvas.gameObject.SetActive(false);
 
         cameraCanvas.defaultVolume.SetActive(true);
         cameraCanvas.cameraVolume.SetActive(false);
@@ -43,6 +45,13 @@ public class UIManager : Singleton<UIManager>
             if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING && !cameraCanvas.gameObject.activeInHierarchy)
             {
                 inventoryCanvas.ActivateCanvas();
+            }
+        }
+        if(Input.GetButtonDown(GameConstants.k_ButtonNameBack))
+        {
+            if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING && !cameraCanvas.gameObject.activeInHierarchy)
+            {
+                pauseMenuCanvas.ActivateCanvas();
             }
         }
     }

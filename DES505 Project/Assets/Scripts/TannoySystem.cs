@@ -45,14 +45,14 @@ public class TannoySystem :Singleton<TannoySystem>
     }
 
     IEnumerator PlayRandomAudio()
-    {
+    {  
         while(true)
         {
             float waitSeconds = randomFrequency + Random.Range(-randomRange, randomRange);
-            yield return new WaitForSeconds(waitSeconds);            
-            if (clipsRandomUnplayed.Count > 0)
+            yield return new WaitForSeconds(waitSeconds);
+            if (!audioSource.isPlaying && clipsRandomUnplayed.Count > 0)
             {
-                Debug.Log("Tannoy: Random");
+                //Debug.Log("Tannoy: Random");
                 AudioClip clip = clipsRandomUnplayed[Random.Range(0, clipsRandomUnplayed.Count)];
                 //audioSource.PlayOneShot(clip);
                 AddPlayCommand(clip);
@@ -63,7 +63,9 @@ public class TannoySystem :Singleton<TannoySystem>
 
     public void PlayGameOver()
     {
-        Debug.Log("Tannoy: GameOver");
+        //Debug.Log("Tannoy: GameOver");
+        if (audioSource.isPlaying)
+            audioSource.Stop();
         if (clipsGameover.Length > 0)
             //audioSource.PlayOneShot(clipsGameover[Random.Range(0, clipsGameover.Length)]);
             AddPlayCommand(clipsGameover[Random.Range(0, clipsGameover.Length)]);
@@ -71,9 +73,11 @@ public class TannoySystem :Singleton<TannoySystem>
 
     public void PlayPhotoFound(int index)
     {
-        if(index < clipsPhotoFound.Length)
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+        if (index < clipsPhotoFound.Length)
         {
-            Debug.Log("Tannoy: Photo " + index);
+            //Debug.Log("Tannoy: Photo " + index);
             if (clipsPhotoFound.Length > 0)
                 //audioSource.PlayOneShot(clipsPhotoFound[index]);
                 AddPlayCommand(clipsPhotoFound[index]);
@@ -82,7 +86,9 @@ public class TannoySystem :Singleton<TannoySystem>
 
     public void PlayPosterFound()
     {
-        if(posterToPlayIndex < clipsPosterFound.Length)
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+        if (posterToPlayIndex < clipsPosterFound.Length)
         {
             AddPlayCommand(clipsPosterFound[posterToPlayIndex++]);
         }
@@ -90,7 +96,7 @@ public class TannoySystem :Singleton<TannoySystem>
 
     public void PlayTannoyAudio(AudioClip clip)
     {
-        Debug.Log("Play Tannoy " + clip.name);
+        //Debug.Log("Play Tannoy " + clip.name);
         //audioSource.PlayOneShot(clip);
         AddPlayCommand(clip);
     }

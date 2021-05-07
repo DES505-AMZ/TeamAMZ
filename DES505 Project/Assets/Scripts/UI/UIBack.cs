@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class UIBack : MonoBehaviour
 {
+    private void Awake()
+    {
+        gameObject.SetActive(true);
+    }
+
     private void Start()
     {
         gameObject.SetActive(false);
