@@ -61,7 +61,7 @@ public class NpcController : MonoBehaviour
         }
         else
         {
-            Debug.Log("idle");
+            //Debug.Log("idle");
             navAgent.SetNavAgentMaxSpeed(0f);
             aiState = AIState.Idle;
         }

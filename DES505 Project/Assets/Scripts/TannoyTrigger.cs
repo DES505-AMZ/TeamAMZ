@@ -27,7 +27,7 @@ public class TannoyTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!triggered || resetTrigger)
+        if (other.tag == "Player" && (!triggered || resetTrigger))
         {
             TannoySystem.Instance.PlayTannoyAudio(audioClip);
             triggered = true;

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 234481241447342599}
   - component: {fileID: 234481241447342621}
   - component: {fileID: 234481241447342620}
-  - component: {fileID: 8240399244928778941}
   - component: {fileID: 3506268267918371093}
   m_Layer: 0
   m_Name: FemaleEmployee
@@ -133,20 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footStepClips: []
---- !u!114 &8240399244928778941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234481241447342597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f463b829b668ea4bb5402928dce25f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 0e3f36c9d94aaa048a4d22b67a169c0a, type: 3}
-  resetTrigger: 0
 --- !u!135 &3506268267918371093
 SphereCollider:
   m_ObjectHideFlags: 0
