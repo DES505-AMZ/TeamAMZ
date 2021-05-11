@@ -3,7 +3,37 @@ guid: 95719bb40542fad469fe7f6e93a55e16
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mirror
+    second: {fileID: 2100000, guid: f8287709b40acce43b99a2b6f9fb51e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paper_white
+    second: {fileID: 2100000, guid: b6065f172cf211341b2fc44759ecfd53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope_2
+    second: {fileID: 2100000, guid: e332d32626f933544aeeffac535fd5a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope_3
+    second: {fileID: 2100000, guid: 339a5954d4ea5c443aa6825bb3f8edd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 73dd0f576db5b1045bad39143eeeddb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: van_metal
+    second: {fileID: 2100000, guid: 2f55c85b04d1bfe4fbdd52b077072691, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

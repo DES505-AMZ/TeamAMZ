@@ -3,7 +3,22 @@ guid: 0344b45c1f10acb428c9cb7976280f15
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope_2
+    second: {fileID: 2100000, guid: e332d32626f933544aeeffac535fd5a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairway_Light
+    second: {fileID: 2100000, guid: d66e08da46097954f9d9b5e36f5c59cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: van_metal
+    second: {fileID: 2100000, guid: 2f55c85b04d1bfe4fbdd52b077072691, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

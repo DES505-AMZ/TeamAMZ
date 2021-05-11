@@ -3,7 +3,27 @@ guid: a6ea88d976d534147bab03d8b4d4a8c6
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clipboard_green_platsic
+    second: {fileID: 2100000, guid: cd15469a5ab434d419f9427bf9086752, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clipboard_metal
+    second: {fileID: 2100000, guid: f8287709b40acce43b99a2b6f9fb51e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clipboard_wood
+    second: {fileID: 2100000, guid: 922dc86bdd89659408c27db66aaff520, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Paper_white
+    second: {fileID: 2100000, guid: b6065f172cf211341b2fc44759ecfd53, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

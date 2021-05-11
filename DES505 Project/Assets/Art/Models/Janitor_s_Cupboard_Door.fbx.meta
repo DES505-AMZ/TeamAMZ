@@ -8,37 +8,37 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Keyhole
-    second: {fileID: 2100000, guid: 339a5954d4ea5c443aa6825bb3f8edd4, type: 2}
+    second: {fileID: 2100000, guid: e332d32626f933544aeeffac535fd5a2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: 339a5954d4ea5c443aa6825bb3f8edd4, type: 2}
+    second: {fileID: 2100000, guid: 2f55c85b04d1bfe4fbdd52b077072691, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert11
-    second: {fileID: 2100000, guid: a172849c6ab098240a691ade195fbaeb, type: 2}
+    second: {fileID: 2100000, guid: f498bd1842cc3744aa99f8ffd78a790b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert2
-    second: {fileID: 2100000, guid: cc9d9ebf436416442b73887891057ef5, type: 2}
+    second: {fileID: 2100000, guid: e332d32626f933544aeeffac535fd5a2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert3
-    second: {fileID: 2100000, guid: 73dd0f576db5b1045bad39143eeeddb5, type: 2}
+    second: {fileID: 2100000, guid: 339a5954d4ea5c443aa6825bb3f8edd4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert4
-    second: {fileID: 2100000, guid: e4636673696957c40b7e2bdd296c53c2, type: 2}
+    second: {fileID: 2100000, guid: 5d868c98a59ddbf4181f07a6240e3e8a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert6
-    second: {fileID: 2100000, guid: e4fa16079a9efba418fcd60b022ccd63, type: 2}
+    second: {fileID: 2100000, guid: ad28b9253b335bb43b94034f5c8d8add, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

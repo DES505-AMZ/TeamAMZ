@@ -3,7 +3,17 @@ guid: bfd446447caf1e442ba35ae097b64707
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ad_screen_label
+    second: {fileID: 2100000, guid: b6065f172cf211341b2fc44759ecfd53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_Panel_frame
+    second: {fileID: 2100000, guid: e332d32626f933544aeeffac535fd5a2, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

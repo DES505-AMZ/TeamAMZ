@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mug_Blue
-    second: {fileID: 2100000, guid: 46eb6ac175a7ae8479897b421f417e95, type: 2}
+    second: {fileID: 2100000, guid: cd15469a5ab434d419f9427bf9086752, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

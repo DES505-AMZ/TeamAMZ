@@ -7,18 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Book_Page
+    second: {fileID: 2100000, guid: b6065f172cf211341b2fc44759ecfd53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: eb1ef5640322ef8419cc1547c5dc2c86, type: 2}
+    second: {fileID: 2100000, guid: b6065f172cf211341b2fc44759ecfd53, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert13
-    second: {fileID: 2100000, guid: 339a5954d4ea5c443aa6825bb3f8edd4, type: 2}
+    second: {fileID: 2100000, guid: 52f97d0b1b5dc6f4fbef0ed7aa1641d1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert14
-    second: {fileID: 2100000, guid: 73dd0f576db5b1045bad39143eeeddb5, type: 2}
+    second: {fileID: 2100000, guid: 316ede9c89c56454e8f3898f94862f66, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -28,12 +33,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert4
-    second: {fileID: 2100000, guid: e4636673696957c40b7e2bdd296c53c2, type: 2}
+    second: {fileID: 2100000, guid: 0adb75e1bedd02f43aae1315ff21b943, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert7
-    second: {fileID: 2100000, guid: eb1ef5640322ef8419cc1547c5dc2c86, type: 2}
+    second: {fileID: 2100000, guid: 2f55c85b04d1bfe4fbdd52b077072691, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

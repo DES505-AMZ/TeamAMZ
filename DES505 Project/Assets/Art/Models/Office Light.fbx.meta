@@ -3,7 +3,27 @@ guid: 43a1efb1db8b9fb4e815479c897e9865
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_Frame
+    second: {fileID: 2100000, guid: c2ee986e94f2593498a0b4f47a8ed511, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Office_Light_frame_grey
+    second: {fileID: 2100000, guid: cb19d08919bf36544a8d7bec6bfca689, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Office_Light_frame_metal
+    second: {fileID: 2100000, guid: 339a5954d4ea5c443aa6825bb3f8edd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairway_Light
+    second: {fileID: 2100000, guid: 4e9d7fa191e9c464a835c42b01d534d6, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

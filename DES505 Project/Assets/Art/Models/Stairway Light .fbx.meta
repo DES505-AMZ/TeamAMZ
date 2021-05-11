@@ -3,7 +3,17 @@ guid: c887aae212436f840b6839d681385c20
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_Frame
+    second: {fileID: 2100000, guid: 339a5954d4ea5c443aa6825bb3f8edd4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairway_Light
+    second: {fileID: 2100000, guid: 4e9d7fa191e9c464a835c42b01d534d6, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

@@ -3,7 +3,52 @@ guid: a08943c2c9666cb44b74d5aaa3b28358
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Case_Light_White
+    second: {fileID: 2100000, guid: f1122f029a5e48f4681560da059a74ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Case_Red_Light
+    second: {fileID: 2100000, guid: 6ef71a97b86878a46818d361c1cce7f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Case_legs
+    second: {fileID: 2100000, guid: a3f199d7eee4e6a44b115a1eb9d88e0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor_tunnel
+    second: {fileID: 2100000, guid: 73dd0f576db5b1045bad39143eeeddb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mirror
+    second: {fileID: 2100000, guid: f8287709b40acce43b99a2b6f9fb51e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Package_Entry_Exit_Case
+    second: {fileID: 2100000, guid: c8bf42abcc803634284b1439233df117, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope_2
+    second: {fileID: 2100000, guid: cc9d9ebf436416442b73887891057ef5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tunnel_Dark
+    second: {fileID: 2100000, guid: c2ee986e94f2593498a0b4f47a8ed511, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Van_Red_Stripe
+    second: {fileID: 2100000, guid: 0adb75e1bedd02f43aae1315ff21b943, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
