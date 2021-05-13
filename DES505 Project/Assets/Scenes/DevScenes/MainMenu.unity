@@ -589,6 +589,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: '[Placeholder]'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
 --- !u!1 &768644267
@@ -882,6 +887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: '[Placeholder]'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
@@ -1252,6 +1262,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: '[Placeholder]'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
 --- !u!1 &1300051253
@@ -1348,6 +1363,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 768644271}
     m_Modifications:
+    - target: {fileID: 1653512026856522572, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: url
+      value: https://www.vice.com/en/article/bvznnm/amazon-warns-employees-not-to-trust-their-unionizing-coworkers
+      objectReference: {fileID: 0}
     - target: {fileID: 1653512026856522578, guid: a843eb0147ebb8a43ae2e248c4b45bed,
         type: 3}
       propertyPath: m_Name
@@ -1412,6 +1432,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: Employees Not to trust their unionizing co-workers
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
@@ -1634,6 +1659,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: '[Placeholder]'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
 --- !u!4 &1363569492 stripped
@@ -1714,6 +1744,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: '[Placeholder]'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
 --- !u!4 &1475063536 stripped
@@ -1729,6 +1764,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 768644271}
     m_Modifications:
+    - target: {fileID: 1653512026856522572, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: url
+      value: https://www.independent.co.uk/news/uk/home-news/amazon-workers-sleep-tents-dunfermline-fife-scotland-a7467657.html
+      objectReference: {fileID: 0}
     - target: {fileID: 1653512026856522578, guid: a843eb0147ebb8a43ae2e248c4b45bed,
         type: 3}
       propertyPath: m_Name
@@ -1793,6 +1833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: Workers "Sleeping in tents near warehouse to save money"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
@@ -2047,7 +2092,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2720,6 +2765,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: '[Placeholder]'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
 --- !u!1001 &1653512028002545532
@@ -2729,6 +2779,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 768644271}
     m_Modifications:
+    - target: {fileID: 1653512026856522572, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: url
+      value: https://www.independent.co.uk/news/uk/home-news/amazon-protests-workers-urinate-plastic-bottles-no-toilet-breaks-milton-keynes-jeff-bezos-a9012351.html
+      objectReference: {fileID: 0}
     - target: {fileID: 1653512026856522578, guid: a843eb0147ebb8a43ae2e248c4b45bed,
         type: 3}
       propertyPath: m_Name
@@ -2788,6 +2843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653512028286727149, guid: a843eb0147ebb8a43ae2e248c4b45bed,
+        type: 3}
+      propertyPath: m_Text
+      value: Workers "Forced to urinate in plastic bottles"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a843eb0147ebb8a43ae2e248c4b45bed, type: 3}
